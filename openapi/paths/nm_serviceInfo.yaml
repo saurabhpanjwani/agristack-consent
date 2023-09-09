@@ -1,7 +1,7 @@
 get:
   tags:
     - NM
-  summary: Get info about a registered service
+  summary: Get service info
   description: Returns info about all registered services that the API client is allowed to access in the AgriStack Consent Management network
   operationId: serviceInfo
   security:
