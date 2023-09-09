@@ -19,9 +19,8 @@ info:
     # Introduction
     
     There are five categories of APIs in the ACM Framework---network manager (NM) APIs, 
-    auth flow APIs, metadata flow APIs, consent flow APIs, and data flow APIs. Each of 
-    these categories is listed in the left panel and the individual APIs are described 
-    below.
+    auth APIs, metadata APIs, consent APIs, and data APIs. Each of these categories is 
+    listed in the left panel and the individual APIs are described below.
 
     # OpenAPI Specification
 
