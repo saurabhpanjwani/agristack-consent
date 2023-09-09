@@ -11,7 +11,7 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   x-logo:
     # See Vendor extensions: https://github.com/Redocly/Redoc/blob/main/docs/redoc-vendor-extensions.md#x-summary
-    url: https://redocly.github.io/openapi-template/logo.png
+    url: https://saurabhpanjwani.github.io/images/agristack-logo.png  
   description: >
     This is the set of all AgriStack Consent Management (ACM) APIs written using OpenAPI
     specification.
