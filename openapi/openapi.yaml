@@ -12,14 +12,14 @@ info:
   x-logo:
     # See Vendor extensions: https://github.com/Redocly/Redoc/blob/main/docs/redoc-vendor-extensions.md#x-summary
     url: https://redocly.github.io/openapi-template/logo.png
-  description: 
+  description: >
     This is the set of all AgriStack Consent Management (ACM) APIs written using OpenAPI
     specification.
 
     # Introduction
     
-    There are five categories of APIs in the ACM Framework---network manager (NM) APIs, 
-    auth APIs, metadata APIs, consent APIs, and data APIs. Each of these categories is 
+    There are five categories of APIs in the ACM Framework-- **network manager (NM)** APIs, 
+    **auth** APIs, **metadata** APIs, **consent** APIs, and **data** APIs. Each of these categories is 
     listed in the left panel and the individual APIs are described below.
 
     # OpenAPI Specification
@@ -29,7 +29,6 @@ info:
     understand capabilities of services without access to source code or documentation. 
     Similar to what interfaces have done for lower-level programming, OpenAPI removes 
     the guesswork in calling services.
-
 tags:
   - name: NM
     description: Network Manager (NM) APIs
