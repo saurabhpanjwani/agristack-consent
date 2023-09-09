@@ -1,31 +1,31 @@
 openapi: 3.1.0
 info:
-  version: 1.0.0
-  title: Example.com
-  termsOfService: https://example.com/terms/
+  version: 0.9.0
+  title: AgriStack Consent Management (ACM) APIs
+    # termsOfService: https://example.com/terms/
   contact:
-    email: contact@example.com
-    url: http://example.com/contact
+    email: saurabh.panjwani [AT-the-RATE-of] gmail.com
+      # url: http://example.com/contact
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   x-logo:
     url: https://redocly.github.io/openapi-template/logo.png
   description: >
-    This is an **example** API to demonstrate features of the OpenAPI
+    This is the set of all AgriStack Consent Management (ACM) APIs written using OpenAPI
     specification.
 
     # Introduction
 
-    This API definition is intended to to be a good starting point for
-    describing your API in [OpenAPI/Swagger
-    format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md).
+    ## This API definition is intended to to be a good starting point for
+    # describing your API in [OpenAPI/Swagger
+    # format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md).
 
-    It also demonstrates features of the
-    [create-openapi-repo](https://github.com/Redocly/create-openapi-repo) tool
-    and the [Redoc](https://github.com/Redocly/Redoc) documentation engine. Beyond
-    the standard OpenAPI syntax, we use a few 
-    [vendor extensions](https://github.com/Redocly/Redoc/blob/master/docs/redoc-vendor-extensions.md).
+    # It also demonstrates features of the
+    # [create-openapi-repo](https://github.com/Redocly/create-openapi-repo) tool
+    # and the [Redoc](https://github.com/Redocly/Redoc) documentation engine. Beyond
+    # the standard OpenAPI syntax, we use a few 
+    # [vendor extensions](https://github.com/Redocly/Redoc/blob/master/docs/redoc-vendor-extensions.md).
 
     # OpenAPI Specification
 
@@ -39,38 +39,28 @@ info:
     interfaces have done for lower-level programming, OpenAPI removes the
     guesswork in calling the service.
 tags:
-  - name: Echo
-    description: Example echo operations.
-  - name: User
-    description: Operations about users.
-  - name: Tag
-    description: This is a tag description.
+  - name: NM
+    description: Network Manager (NM) APIs
 servers:
-  - url: https://{tenant}/api/v1
+  - url: https://{tenant}/api/
+    description: Server where the API is hosted
     variables:
       tenant:
         default: www
-        description: Your tenant id
-  - url: https://example.com/api/v1
+        description: Tenant ID 
 paths:
-  /users/{username}:
-    $ref: paths/users_{username}.yaml
-  /echo:
-    $ref: paths/echo.yaml
-  /pathItem:
-    $ref: paths/pathItem.yaml
-  /pathItemWithExamples:
-    $ref: paths/pathItemWithExamples.yaml
+  /nm/serviceInfo:
+    $ref: paths/nm_serviceInfo.yaml
 components:
   securitySchemes:
-    main_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: http://example.com/api/oauth/dialog
-          scopes:
-            read:users: read users info
-            write:users: modify or remove users
+    #main_auth:
+    #  type: oauth2
+    #  flows:
+    #    implicit:
+    #      authorizationUrl: http://example.com/api/oauth/dialog
+    #      scopes:
+    #        read:users: read users info
+    #        write:users: modify or remove users
     api_key:
       type: apiKey
       in: header
