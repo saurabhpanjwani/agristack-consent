@@ -55,7 +55,7 @@ items:
               example: sig
               enum:
                 - sig
-              - enc
+                - enc
             x5c:
               type: array
               description: X.509 certificate chain linked with the key
