@@ -42,7 +42,7 @@ tags:
   - name: NM
     description: Network Manager (NM) APIs
 servers:
-  - url: https://{tenant}/api/
+  - url: https://{tenant}/api
     description: Server where the API is hosted
     variables:
       tenant:

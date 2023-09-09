@@ -1,85 +1,85 @@
 type: array
 description: List of services that the client is allowed to access
 items: 
-type: object
-required:
-  - baseUrl
-  - certificates
-  - name
-  - owner
-  - ownerType
-properties:
-  name:
-    type: string
-    description: Name of the service
-    example: CM1_Main
+  type: object
+  required:
+    - baseUrl
+    - certificates
+    - name
+    - owner
+    - ownerType
+  properties:
+    name:
+      type: string
+      description: Name of the service
+      example: CM1_Main
     owner:
       type: string
       description: Name of the entity who runs the service
       example: CM1
-      ownerType:
-        type: string
-        description: Type of the entity who runs the service
-        example: CM
-        enum:
-          - CM
-          - AIP
-          - AIU
-        baseUrl:
-          pattern: https://*
-          type: string
-          description: Base URL used to access the service
-          example: https://cm1.com/v1/
-          certificates:
-            type: array
-            description: List of certificates associated with the service owner
-            items:
-              required:
-                - alg
-              - use
-              - e
-              - n
-              - kid
-            type: object
-            properties:
-              alg:
-                type: string
-                description: Algorithm used with the key
-                example: RS_256
-                enum:
-                  - RS_256
-                  - EC_256
-                use:
-                  type: string
-                  description: Use of the key
-                  example: sig
-                  enum:
-                    - sig
-                  - enc
-                x5c:
-                  type: array
-                  description: X.509 certificate chain linked with the key
-                  items:
-                    type: string
-                    example: MIIC+DCCAeCgAwIBAgIJBIGjYW6hFp
-                n:
-                  type: string
-                  description: Exponent of the RSA public key
-                  example: AqaB18m
-                e:
-                  type: string
-                  description: Modulus of the RSA public
-                  example: yeNlzlub94YgerT030codqEztjfU_S6X4DbDA_iV
-                kid:
-                  type: string
-                  description: Unique ID of the key
-                  example: ejRu9f3er12ower
-          status:
+    ownerType:
+      type: string
+      description: Type of the entity who runs the service
+      example: CM
+      enum:
+        - CM
+        - AIP
+        - AIU
+    baseUrl:
+      pattern: https://*
+      type: string
+      description: Base URL used to access the service
+      example: https://cm1.com/v1/
+    certificates:
+      type: array
+      description: List of certificates associated with the service owner
+      items:
+        required:
+          - alg
+          - use
+          - e
+          - n
+          - kid
+        type: object
+        properties:
+          alg:
             type: string
-            description: Is the service live or defunct
-            example: LIVE
+            description: Algorithm used with the key
+            example: RS_256
             enum:
-              - LIVE
-              - DEFUNCT
-        xml:
-          name: serviceInfo
+              - RS_256
+              - EC_256
+            use:
+              type: string
+              description: Use of the key
+              example: sig
+              enum:
+                - sig
+              - enc
+            x5c:
+              type: array
+              description: X.509 certificate chain linked with the key
+              items:
+                type: string
+                example: MIIC+DCCAeCgAwIBAgIJBIGjYW6hFp
+            n:
+              type: string
+              description: Exponent of the RSA public key
+              example: AqaB18m
+            e:
+              type: string
+              description: Modulus of the RSA public
+              example: yeNlzlub94YgerT030codqEztjfU_S6X4DbDA_iV
+            kid:
+              type: string
+              description: Unique ID of the key
+              example: ejRu9f3er12ower
+    status:
+      type: string
+      description: Is the service live or defunct
+      example: LIVE
+      enum:
+        - LIVE
+        - DEFUNCT
+  xml:
+      name: serviceInfo
