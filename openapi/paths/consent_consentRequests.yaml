@@ -1,0 +1,18 @@
+post: 
+  tags: 
+    - consent
+  summary: Post consent request
+  description: API used by an AIU to send a fresh consent request to a CM
+  operationId: consentRequests
+  security: 
+    - api_key: [ ]
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/consentRequest.yaml
+    description: Consent request object
+    required: true
+  responses:
+    '200':
+      description: Success

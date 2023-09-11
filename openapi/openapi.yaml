@@ -31,7 +31,9 @@ info:
     the guesswork in calling services.
 tags:
   - name: NM
-    description: Network Manager (NM) APIs
+    description: network manager (NM) APIs
+  - name: consent
+    description: consent APIs
 servers:
   - url: https://{tenant}/api
     description: Server where the API is hosted
@@ -42,6 +44,8 @@ servers:
 paths:
   /nm/serviceInfo:
     $ref: paths/nm_serviceInfo.yaml
+  /consent/consentRequests:
+    $ref: paths/consent_consentRequests.yaml
 components:
   securitySchemes:
     #main_auth:

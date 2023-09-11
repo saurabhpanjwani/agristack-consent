@@ -1,0 +1,6 @@
+type: object
+properties:
+  farmer-id:
+    description: The identifier of the farmer whose data is being sought by the AIU
+    type: string
+    example: 91823482333
