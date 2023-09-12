@@ -10,12 +10,12 @@ get:
     "200":
       description: Success
       headers:
-        response_signature:
+        signature:
           style: simple
           explode: false
           schema:
             type: string
-            description: Responder i.e. NM's signature on the body of the response
+            description: API server's signature on the body of the response
             example: kjfd34mdf=KedfnfEpd2dmd_kDf
       content:
         application/json:

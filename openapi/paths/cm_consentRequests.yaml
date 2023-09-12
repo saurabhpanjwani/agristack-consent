@@ -6,6 +6,18 @@ post:
   operationId: consentRequest
   security: 
     - api_key: [ ]
+  headers:
+    version:
+      description: Protocol specification version used
+      type: string
+      pattern: '\d\.\d\.\d'
+      example: '1.0.0'
+      required: false
+    senderId:
+      description: Sender ID
+      type: string
+      example: 'aiu1.com'
+      required: true
   requestBody:
     content:
       application/json:
@@ -16,3 +28,11 @@ post:
   responses:
     '200':
       description: Success
+      headers:
+        signature: 
+          style: simple
+          explode: false
+          schema:
+            description: API server's signature on the body of the response
+            type: string
+            example: kjfd34mdf=KedfnfEpd2dmd_kDf
