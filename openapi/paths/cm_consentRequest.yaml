@@ -15,7 +15,6 @@ post:
         type: string
         pattern: '\d\.\d\.\d'
         example: '1.0.0'
-      $ref: ../components/headers/version.yaml
     - name: senderId
       description: ID of the API client
       in: header
