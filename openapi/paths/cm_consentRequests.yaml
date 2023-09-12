@@ -11,15 +11,17 @@ post:
       description: Protocol specification version used
       in: header
       required: false
-      type: string
-      pattern: '\d\.\d\.\d'
-      example: '1.0.0'
+      schema: 
+        type: string
+        pattern: '\d\.\d\.\d'
+        example: '1.0.0'
     - name: senderId
       description: ID of the API client
       in: header
       required: true
-      type: string
-      example: 'aiu1.com'
+      schema:
+        type: string
+        example: 'aiu1.com'
   requestBody:
     content:
       application/json:
