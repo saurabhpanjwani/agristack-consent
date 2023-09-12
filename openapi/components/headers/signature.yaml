@@ -2,5 +2,4 @@ style: simple
 explode: false
 schema:
   type: string
-  description: JWS signature on the response body generated using the server's private key (payload optional)
   example: kjfd34mdf=KedfnfEpd2dmd+kDf..kfdl89rpK2Bsaf4ypS+ruE1o 
