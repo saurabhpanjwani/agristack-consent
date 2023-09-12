@@ -1,6 +1,4 @@
 description: Protocol specification version used
-in: header
-required: false
 schema: 
   type: string
   pattern: '\d\.\d\.\d'
