@@ -26,7 +26,7 @@ items:
         - AIP
         - AIU
     baseUrl:
-      pattern: https://*
+      pattern: uri
       type: string
       description: Base URL used to access the service
       example: https://cm1.com/v1/
