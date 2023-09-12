@@ -1,6 +1,89 @@
 type: object
+required: 
+  - farmerId
+  - aipId
+  - purposeCode
+  - dateRange
+  - timeout
 properties:
-  farmer-id:
-    description: The identifier of the farmer whose data is being sought by the AIU
+  farmerId:
+    description: Identifier of the farmer whose data is being sought by the AIU
     type: string
-    example: 91823482333
+    pattern: '^\d{11}$'
+    example: 12341234123
+  aipId:
+    description: Identifier of the AIP from whom data is being sought
+    type: string
+    example: 'KA'
+  purposeCode:
+    description: Purpose code indicating the intended use of the sought data 
+    type: string
+    example: 'CREDIT_KCC'
+    enum:
+      - CREDIT_KCC
+      - CREDIT_OTHER
+      - INPUT_SUBSIDY
+      - INSURANCE
+      - ADVICE
+  dateRange:
+    description: Upper and lower bounds on the time-instants for which data could be sought
+    type: object
+    properties:
+      from:
+        description: Lower bound of the date range
+        type: string
+        format: date
+        example: '2023-10-01'
+      to:
+        description: Upper bound of the date range
+        type: string
+        format: date
+        example: '2023-10-02'
+  profileAttributes:
+    description: List of profile attributes that are sought
+    type: array
+    example: '[NAME, GENDER, CASTE, FARMER_TYPE]'
+    items:
+      type: string
+      enum:
+        - NAME
+        - GENDER
+        - DOB
+        - ADDRESS
+        - CASTE
+        - FARMER_TYPE # Cultivator or owner?
+  assetAttributes:
+    description: List of asset types and associated metadata that are sought
+    type: array
+    items:
+      type: object
+      properties:
+        assetType: 
+          description: Type of asset for which data is sought
+          type: string
+          example: 'FARM'
+          enum:
+            - FARM
+            - LIVESTOCK
+        assetAttributes: 
+          description: The list of attributes that can be sought per asset type, some attributes apply only to certain types of assets (e.g., crops sown applies only to farms)
+          type: array
+          example: '[ASSET_COUNT, ASSET_IDENTIFIERS, CROPS_SOWN]'
+          items: 
+            type: string
+            enum:
+              - ASSET_COUNT # flag indicating whether ownership of the asset is revealed or not
+              - ASSET_IDENTIFIERS
+              - ASSET_OWNERSHIP_TYPE # rented or owned
+              - CROPS_SOWN
+              - SOWN_AREA
+  timeout: 
+    description: The time after which the consent request, if left unserved by the CM, is deemed to have failed
+    type: string
+    format: data-time
+    example: '2023-10-02T23:59:59Z'
+
+
+
+
+

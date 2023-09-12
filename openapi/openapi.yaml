@@ -32,8 +32,8 @@ info:
 tags:
   - name: NM
     description: network manager (NM) APIs
-  - name: consent
-    description: consent APIs
+  - name: CM
+    description: consent manager (CM) APIs
 servers:
   - url: https://{tenant}/api
     description: Server where the API is hosted
@@ -44,8 +44,8 @@ servers:
 paths:
   /nm/serviceInfo:
     $ref: paths/nm_serviceInfo.yaml
-  /consent/consentRequests:
-    $ref: paths/consent_consentRequests.yaml
+  /cm/consentRequests:
+    $ref: paths/cm_consentRequests.yaml
 components:
   securitySchemes:
     #main_auth:
