@@ -1,9 +1,9 @@
 post: 
   tags: 
-    - consent
+    - CM
   summary: Post consent request
   description: API used by an AIU to send a fresh consent request to a CM
-  operationId: consentRequests
+  operationId: consentRequest
   security: 
     - api_key: [ ]
   requestBody:
