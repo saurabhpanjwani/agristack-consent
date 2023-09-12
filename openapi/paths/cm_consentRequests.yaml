@@ -6,14 +6,16 @@ post:
   operationId: consentRequest
   security: 
     - api_key: [ ]
-  headers:
-    version:
+  parameters:
+    - version:
+      in: header
       description: Protocol specification version used
       type: string
       pattern: '\d\.\d\.\d'
       example: '1.0.0'
       required: false
-    senderId:
+    - senderId:
+      in: header
       description: Sender ID
       type: string
       example: 'aiu1.com'
