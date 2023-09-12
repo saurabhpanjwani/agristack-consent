@@ -7,19 +7,19 @@ post:
   security: 
     - api_key: [ ]
   parameters:
-    - version:
-      in: header
+    - name: version
       description: Protocol specification version used
+      in: header
+      required: false
       type: string
       pattern: '\d\.\d\.\d'
       example: '1.0.0'
-      required: false
-    - senderId:
+    - name: senderId
+      description: ID of the API client
       in: header
-      description: Sender ID
+      required: true
       type: string
       example: 'aiu1.com'
-      required: true
   requestBody:
     content:
       application/json:
