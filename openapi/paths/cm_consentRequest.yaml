@@ -40,7 +40,7 @@ post:
     required: true
   responses:
     '200':
-      description: Success
+      description: Default
       headers:
         signature: 
           description: JWS signature on the response body generated using the server's private key (payload optional)

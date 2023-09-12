@@ -18,8 +18,8 @@ info:
 
     # Introduction
     
-    There are five categories of APIs in the ACM Framework-- **network manager (NM)** APIs, 
-    **auth** APIs, **metadata** APIs, **consent** APIs, and **data** APIs. Each of these categories is 
+    There are four categories of APIs in the ACM Framework-- **network manager (NM)** APIs, 
+    **AIP** APIs, **CM** APIs, and **AIU** APIs. Each of these categories is 
     listed in the left panel and the individual APIs are described below.
 
     # OpenAPI Specification
@@ -32,8 +32,12 @@ info:
 tags:
   - name: NM
     description: network manager (NM) APIs
+  - name: AIP
+    description: agri information provider (AIP) APIs
   - name: CM
     description: consent manager (CM) APIs
+  - name: AIU
+    description: agri information user (AIU) APIs
 servers:
   - url: https://{tenant}/api
     description: Server where the API is hosted
