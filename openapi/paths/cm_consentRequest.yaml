@@ -8,6 +8,8 @@ post:
     - api_key: [ ]
   parameters:
     - name: version
+      in: header
+      required: false
       $ref: ../components/headers/version.yaml
     - name: senderId
       description: ID of the API client
