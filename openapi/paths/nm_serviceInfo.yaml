@@ -16,7 +16,7 @@ get:
           schema:
             type: string
             description: API server's signature on the body of the response
-            example: kjfd34mdf=KedfnfEpd2dmd_kDf
+            example: kjfd34mdf=KedfnfEpd2dmd+kDf
       content:
         application/json:
           schema:

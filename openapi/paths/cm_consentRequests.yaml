@@ -22,6 +22,14 @@ post:
       schema:
         type: string
         example: 'aiu1.com'
+    - name: signature
+      description: JWS signature on the request body generated using the client's private key (payload optional)
+      in: header
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: ldfER948jfyak39Kere+erjj/Ad..dfde51rjda8fsaf4fow+r4324
   requestBody:
     content:
       application/json:
@@ -34,9 +42,9 @@ post:
       description: Success
       headers:
         signature: 
+          description: JWS signature on the response body generated using the server's private key (payload optional)
           style: simple
           explode: false
           schema:
-            description: API server's signature on the body of the response
             type: string
-            example: kjfd34mdf=KedfnfEpd2dmd_kDf
+            example: kjfd34mdf=KedfnfEpd2dmd+kDf..kfdl89rpK2Bsaf4ypS+ruE1o
