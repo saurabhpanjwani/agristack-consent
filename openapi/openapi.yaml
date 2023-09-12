@@ -44,8 +44,8 @@ servers:
 paths:
   /nm/serviceInfo:
     $ref: paths/nm_serviceInfo.yaml
-  /cm/consentRequests:
-    $ref: paths/cm_consentRequests.yaml
+  /cm/consentRequest:
+    $ref: paths/cm_consentRequest.yaml
 components:
   securitySchemes:
     #main_auth:

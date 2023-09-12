@@ -80,10 +80,7 @@ properties:
   timeout: 
     description: The time after which the consent request, if left unserved by the CM, is deemed to have failed
     type: string
-    format: data-time
+    format: date-time
     example: '2023-10-02T23:59:59Z'
-
-
-
 
 
