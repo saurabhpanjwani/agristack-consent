@@ -1,0 +1,40 @@
+type: object
+required: 
+  - result
+  - transactionId
+  - timeStamp
+properties:
+  result:
+    description: Result created based on immediate validation of the request
+    type: string
+    enum:
+      - OK
+      - ERR
+    example: 'OK'
+  transactionId:
+    description: Transaction ID assigned to the current transaction by the server
+    type: string
+    example: 'cm1-29184739230238'
+  timeStamp:
+    description: Timestamp recorded by the server
+    $ref: '../components/attributes/timestamp.yaml'
+  error:
+    description: Error code and message 
+    type: object
+    required:
+      - code
+    properties:
+      code:
+        description: Error code
+        type: string
+        example: 'err.malformedHeader'
+        enum:
+          - 'err.version.unsupported'
+          - 'err.malformedHeader'
+          - 'err.malformedMeta'
+          - 'err.malformedMain'
+      message:
+        description: Verbose description of the error
+        type: string
+        example: "Malformed Header: client ID missing"
+

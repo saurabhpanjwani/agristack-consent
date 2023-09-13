@@ -15,7 +15,7 @@ post:
         type: string
         pattern: '\d\.\d\.\d'
         example: '1.0.0'
-    - name: senderId
+    - name: clientId
       description: ID of the API client
       in: header
       required: true
@@ -45,3 +45,9 @@ post:
         signature: 
           description: JWS signature on the response body generated using the server's private key (payload optional)
           $ref: '../components/headers/signature.yaml'
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/consentRequest_default.yaml'
+
+
