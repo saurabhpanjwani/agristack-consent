@@ -23,3 +23,5 @@ get:
         WWW_Authenticate:
           schema:
             type: string
+    '403':
+      description: Client is forbidden

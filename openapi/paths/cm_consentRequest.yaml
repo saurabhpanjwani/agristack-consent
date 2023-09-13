@@ -49,5 +49,13 @@ post:
         application/json:
           schema:
             $ref: '../components/schemas/consentRequest_default.yaml'
+    '401':
+      description: API key is missing or invalid
+      headers:
+        WWW_Authenticate:
+          schema: 
+            type: string
+    '403':
+      description: Client is forbidden
 
 
