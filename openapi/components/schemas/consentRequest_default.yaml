@@ -10,13 +10,13 @@ properties:
     enum:
       - OK
       - ERR
-    example: 'OK'
+    example: 'ERR'
   transactionId:
-    description: Transaction ID assigned to the current transaction by the server
+    description: ID assigned to the transaction by the server
     type: string
     example: 'cm1-29184739230238'
   timeStamp:
-    description: Timestamp recorded by the server
+    description: Response timestamp recorded by the server
     $ref: '../attributes/timestamp.yaml'
   error:
     description: Error code and message 
