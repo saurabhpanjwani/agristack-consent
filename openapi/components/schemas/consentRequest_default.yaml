@@ -17,7 +17,7 @@ properties:
     example: 'cm1-29184739230238'
   timeStamp:
     description: Timestamp recorded by the server
-    $ref: '../components/attributes/timestamp.yaml'
+    $ref: '../attributes/timestamp.yaml'
   error:
     description: Error code and message 
     type: object
