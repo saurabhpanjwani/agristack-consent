@@ -10,6 +10,7 @@ properties:
       - messageId
       - messageTimestamp
       - callbackUrl
+      - timeout
     properties:
       messageId:
         description: Unique identifier of the message, set by the API client
@@ -25,6 +26,11 @@ properties:
         type: string
         format: uri
         example: 'http://aiu1-callback.com'
+      timeout: 
+        description: The time after which the request, if left unserved by the server, is deemed to have expired
+        type: string
+        format: date-time
+        example: '2023-10-02T23:59:59Z'
   main: 
     description: Main attributes of the API request
     type: object
@@ -34,7 +40,6 @@ properties:
       - purposeCode
       - dateRange
       - attributesSought
-      - timeout
     properties:
       farmerId:
         description: Identifier of the farmer whose data is being sought by the client
@@ -111,8 +116,3 @@ properties:
                       - ASSET_OWNERSHIP_TYPE # rented or owned
                       - CROPS_SOWN
                       - SOWN_AREA
-      timeout: 
-        description: The time after which the consent request, if left unserved by the CM, is deemed to have failed
-        type: string
-        format: date-time
-        example: '2023-10-02T23:59:59Z'
