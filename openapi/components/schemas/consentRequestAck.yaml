@@ -1,0 +1,61 @@
+type: object
+required:
+  - meta
+  - main
+properties:
+  meta: 
+    type: object
+    required:
+      - messageId
+      - messageTimestamp
+      - transactionId
+    properties:
+      messageId:
+        description: Unique identifier of the message, set by the API client
+        type: string
+        example: 'msg-8323294'
+      messageTimestamp:
+        description: Message timestamp, in ISO 8601 format
+        type: string
+        format: date-time
+        example: '2023-10-01T23:59:59Z'
+      transactionId:
+        description: Transaction ID linked to the original consent request
+        type: string
+        example: 'cm1-29184739230238'
+  main:
+    type: object
+    required:
+      - result
+    properties: 
+      result:
+        description: Result created based on semantic validation of the original consent request
+        type: string
+        enum:
+          - OK
+          - ERR
+        example: 'ERR'
+      error:
+        description: Error code and message
+        type: object
+        required: 
+          - code
+        properties:
+          code:
+            description: Error code
+            type: string
+            example: 'err.farmerId.invalid'
+            enum:
+              - 'err.farmerId.invalid'
+              - 'err.farmerId.expired'
+              - 'err.aipId.invalid'
+              - 'err.purposeCode.invalid'
+              - 'err.dateRange.invalid'
+              - 'err.attributesSought.profileAttributes.invalid'
+              - 'err.attributesSought.assetAttributes.invalid'
+              - 'err.timeout.invalid'
+          message:
+            description: Verbose description of the error
+            type: string
+            example: "Invalid Farmer ID: Farmer ID must be numeric"
+
