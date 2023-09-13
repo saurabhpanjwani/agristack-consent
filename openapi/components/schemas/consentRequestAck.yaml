@@ -4,6 +4,7 @@ required:
   - main
 properties:
   meta: 
+    description: Meta attributes of the API request
     type: object
     required:
       - messageId
@@ -24,6 +25,7 @@ properties:
         type: string
         example: 'cm1-29184739230238'
   main:
+    description: Main attributes of the API request
     type: object
     required:
       - result
