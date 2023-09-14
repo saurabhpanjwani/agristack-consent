@@ -116,4 +116,3 @@ put:
             type: string
     '403':
       description: Client is forbidden 
-

@@ -4,7 +4,7 @@ required:
   - status
 properties:
   status:
-    description: Status of the consent artifact. Note: ACTIVE may mean CONSENT_GRANTED or CONSENT_RESUMED
+    description: Status of the consent artifact (ACTIVE may mean GRANTED or RESUMED)
     type: string
     example: 'ACTIVE'
     enum:
