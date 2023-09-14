@@ -40,15 +40,11 @@ post:
     required: true
   responses:
     '200':
-      description: Default
-      headers:
-        signature: 
-          description: JWS signature on the response body generated using the server's private key (payload optional)
-          $ref: '../components/headers/signature.yaml'
-      content:
-        application/json:
-          schema:
-            $ref: '../components/schemas/consentRequest_default.yaml'
+      $ref: '../components/responses/response_default.yaml'
+        #       description: Default
+        #       headers:
+        #         signature: 
+        #           description: JWS signature on the response body generated using the server's private key (payload optional)
     '401':
       description: API key is missing or invalid
       headers:
