@@ -2,7 +2,6 @@ description: Default
 headers:
   signature: 
     description: JWS signature on the response body generated using the server's private key (payload optional)
-    required: true
     $ref: '../components/headers/signature.yaml'
 content:
   application/json:
