@@ -1,0 +1,18 @@
+type: object
+properties:
+  assetType:
+    type: string
+    example: 'LIVESTOCK'
+    enum:
+      - LIVESTOCK
+  assetAttributes:
+    description: The list of attributes that can be sought per farm
+    type: array
+    example: '[LIVESTOCK_COUNT, LIVESTOCK_IDENTIFIERS, PRODUCE_GENERATED]'
+    items: 
+      type: string
+      enum:
+        - LIVESTOCK_COUNT 
+        - LIVESTOCK_IDENTIFIERS
+        - LIVESTOCK_OWNERSHIP_TYPE # rented or owned
+        - PRODUCE_GENERATED

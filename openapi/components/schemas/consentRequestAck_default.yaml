@@ -10,7 +10,7 @@ properties:
       - OK
       - ERR
     example: 'ERR'
-  timeStamp:
+  timestamp:
     description: Response timestamp recorded by the server
     $ref: '../attributes/timestamp.yaml'
   error:

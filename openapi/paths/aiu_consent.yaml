@@ -1,0 +1,52 @@
+post:
+  tags:
+    - AIU
+  summary: Post consent (artifact)
+  description: API used by a CM to communicate fresh consent artifacts to an AIU
+  operationId: consent
+  security: 
+    - api_key: [  ]
+  parameters:
+    - name: version
+      description: Protocol specification version used
+      in: header
+      required: false
+      schema: 
+        type: string
+        pattern: '\d\.\d\.\d'
+        example: '1.0.0'
+    - name: clientId
+      description: ID of the API client
+      in: header
+      required: true
+      schema:
+        type: string
+        example: 'cm1.com'
+    - name: signature
+      description: JWS signature on the request body generated using the client's private key (payload optional)
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: ldfER948jfyak39Kere+erjj/Ad..dfde51rjda8fsaf4fow+r4324
+  requestBody:
+    content:
+      application/json: 
+        schema:
+          $ref: '../components/schemas/consent_for_aiu.yaml'
+    description: Consent object
+    required: true
+  responses:
+    '200':
+      $ref: '../components/responses/consent_aiu_default.yaml'
+    '401':
+      description: API key is missing or invalid
+      headers:
+        WWW_Authenticate:
+          schema: 
+            type: string
+    '403':
+      description: Client is forbidden 
+

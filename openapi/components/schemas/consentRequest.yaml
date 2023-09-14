@@ -7,17 +7,17 @@ properties:
     description: Meta-attributes of the API request
     type: object
     required:
-      - messageId
-      - messageTimestamp
+      - requestId
+      - timestamp
       - callbackUrl
       - timeout
     properties:
-      messageId:
-        description: Unique identifier of the message, set by the API client
+      requestId:
+        description: Unique identifier of the API request, set by the API client
         type: string
         example: 'msg-8323294'
-      messageTimestamp:
-        description: Message timestamp, in ISO 8601 format
+      timestamp:
+        description: Request timestamp, in ISO 8601 format
         type: string
         format: date-time
         example: '2023-10-01T23:59:59Z'
@@ -47,7 +47,7 @@ properties:
         pattern: '^\d{11}$'
         example: 12341234123
       aipId:
-        description: Identifier of the agricultural information provider (AIP) from whom data is being sought
+        description: Identifier of the agricultural information provider (AIP) maintaining the data being sought
         type: string
         example: 'KA'
       purposeCode:
@@ -63,6 +63,9 @@ properties:
       dateRange:
         description: Upper and lower bounds on the time-instants for which data could be sought
         type: object
+        required:
+          - from
+          - to
         properties:
           from:
             description: Lower bound of the date range
@@ -93,26 +96,30 @@ properties:
                 - FARMER_TYPE # Cultivator or owner?
           assetAttributes:
             description: List of asset types and associated metadata that are sought
-            type: array
-            items:
+              # type: array
+              # items:
               type: object
-              properties:
-                assetType: 
-                  description: Type of asset for which data is sought
-                  type: string
-                  example: 'FARM'
-                  enum:
-                    - FARM
-                    - LIVESTOCK
-                assetAttributes: 
-                  description: The list of attributes that can be sought per asset type, some attributes apply only to certain types of assets (e.g., crops sown applies only to farms)
-                  type: array
-                  example: '[ASSET_COUNT, ASSET_IDENTIFIERS, CROPS_SOWN]'
-                  items: 
-                    type: string
-                    enum:
-                      - ASSET_COUNT # flag indicating whether ownership of the asset is revealed or not
-                      - ASSET_IDENTIFIERS
-                      - ASSET_OWNERSHIP_TYPE # rented or owned
-                      - CROPS_SOWN
-                      - SOWN_AREA
+              oneOf: 
+                - $ref: '../objects/asset_farm.yaml'
+                - $ref: '../objects/asset_livestock.yaml'
+                  
+                  #              properties:
+                  #                assetType: 
+                  #                  description: Type of asset for which data is sought
+                  #                  type: string
+                  #                  example: 'FARM'
+                  #                  enum:
+                  #                    - FARM
+                  #                    - LIVESTOCK
+                  #                assetAttributes: 
+                  #                  description: The list of attributes that can be sought per asset type, some attributes apply only to certain types of assets (e.g., crops sown applies only to farms)
+                  #                  type: array
+                  #                  example: '[ASSET_COUNT, ASSET_IDENTIFIERS, CROPS_SOWN]'
+                  #                  items: 
+                  #                    type: string
+                  #                    enum:
+                  #                      - ASSET_COUNT # flag indicating whether ownership of the asset is revealed or not
+                  #                      - ASSET_IDENTIFIERS
+                  #                      - ASSET_OWNERSHIP_TYPE # rented or owned
+                  #                      - CROPS_SOWN
+                  #                      - SOWN_AREA

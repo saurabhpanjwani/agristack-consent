@@ -2,7 +2,7 @@ type: object
 required: 
   - result
   - transactionId
-  - timeStamp
+  - timestamp
 properties:
   result:
     description: Result created based on immediate validation of the request
@@ -15,7 +15,7 @@ properties:
     description: ID assigned to the transaction by the server
     type: string
     example: 'cm1-29184739230238'
-  timeStamp:
+  timestamp:
     description: Response timestamp recorded by the server
     $ref: '../attributes/timestamp.yaml'
   error:
