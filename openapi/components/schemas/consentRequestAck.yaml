@@ -14,7 +14,7 @@ properties:
       requestId:
         description: Unique identifier of the API request, set by the API client
         type: string
-        example: 'msg-8323294'
+        example: 'req-8323294'
       timestamp:
         description: Request timestamp, in ISO 8601 format
         type: string

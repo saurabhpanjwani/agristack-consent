@@ -50,8 +50,12 @@ paths:
     $ref: paths/nm_serviceInfo.yaml
   /cm/consentRequest:
     $ref: paths/cm_consentRequest.yaml
+  /cm/consentArtifact:
+    $ref: paths/cm_consentArtifact.yaml
   /aiu/consentRequestAck:
     $ref: paths/aiu_consentRequestAck.yaml
+  /aiu/consentNotification:
+    $ref: paths/aiu_consentNotification.yaml
 components:
   securitySchemes:
     #main_auth:

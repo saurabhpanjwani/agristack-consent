@@ -40,7 +40,7 @@ post:
     required: true
   responses:
     '200':
-      $ref: '../components/responses/consent_aiu_default.yaml'
+      $ref: '../components/responses/response_default.yaml'
     '401':
       description: API key is missing or invalid
       headers:

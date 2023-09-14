@@ -1,0 +1,70 @@
+get:
+  tags:
+    - CM
+  summary: Get consent artifact
+  description: Returns the consent artifact corresponding to a given consent ID
+  operationId: consentArtifact
+  security:
+    - api_key: [  ]
+  parameters:
+    - name: artifactId
+      description: Consent artifact ID
+      in: path
+      schema:
+        type: string
+        example: 'consent-cm1-37934242348'
+        maxLength: 99
+      required: true
+    - name: transactionId
+      description: If the API client is an AIU, this must be set to be the transaction ID linked to the original consent request issued\
+        by that AIU. If the client is an AIP, it must be the transaction ID for the consent notification sent to that AIP
+      in: path
+      schema:
+        type: string
+        example: 'consent-cm1-37934242348'
+        maxLength: 99
+      required: true
+    - name: version
+      description: Protocol specification version used
+      in: header
+      required: false
+      schema: 
+        type: string
+        pattern: '\d\.\d\.\d'
+        example: '1.0.0'
+    - name: clientId
+      description: ID of the API client
+      in: header
+      required: true
+      schema:
+        type: string
+        example: 'aiu1.com'
+    - name: signature
+      description: JWS signature on the request body generated using the client's private key (payload optional)
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: ldfER948jfyak39Kere+erjj/Ad..dfde51rjda8fsaf4fow+r4324
+  responses:
+    "200":
+      description: Default
+      headers:
+        signature:
+          description: JWS signature on the response body generated using the server's private key (payload optional)
+          $ref: '../components/headers/signature.yaml'
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/consentArtifact.yaml'
+    "401":
+      description: API key is missing or invalid
+      headers:
+        WWW_Authenticate:
+          schema:
+            type: string
+    "403":
+      description: Client is forbidden
+

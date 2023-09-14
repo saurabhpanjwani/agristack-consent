@@ -1,4 +1,5 @@
 type: object
+description: Asset of type *FARM*
 properties:
   assetType:
     type: string

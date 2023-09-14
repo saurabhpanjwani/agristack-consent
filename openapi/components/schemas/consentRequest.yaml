@@ -15,7 +15,7 @@ properties:
       requestId:
         description: Unique identifier of the API request, set by the API client
         type: string
-        example: 'msg-8323294'
+        example: 'req-8323294'
       timestamp:
         description: Request timestamp, in ISO 8601 format
         type: string
@@ -96,10 +96,9 @@ properties:
                 - FARMER_TYPE # Cultivator or owner?
           assetAttributes:
             description: List of asset types and associated metadata that are sought
-            type: object
             oneOf: 
-              - $ref: '../objects/asset_farm.yaml'
-              - $ref: '../objects/asset_livestock.yaml'
+              - $ref: '../objects/assetFarm.yaml'
+              - $ref: '../objects/assetLivestock.yaml'
                   
               # type: array
               # items:

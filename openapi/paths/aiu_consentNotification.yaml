@@ -1,0 +1,106 @@
+post:
+  tags:
+    - AIU
+  summary: Post consent notification
+  description: API used by a CM to communicate successful or failed generation of consent artifacts to an AIU
+  operationId: consentNotification
+  security: 
+    - api_key: [  ]
+  parameters:
+    - name: version
+      description: Protocol specification version used
+      in: header
+      required: false
+      schema: 
+        type: string
+        pattern: '\d\.\d\.\d'
+        example: '1.0.0'
+    - name: clientId
+      description: ID of the API client
+      in: header
+      required: true
+      schema:
+        type: string
+        example: 'cm1.com'
+    - name: signature
+      description: JWS signature on the request body generated using the client's private key (payload optional)
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: ldfER948jfyak39Kere+erjj/Ad..dfde51rjda8fsaf4fow+r4324
+  requestBody:
+    content:
+      application/json: 
+        schema:
+          $ref: '../components/schemas/aiu_postConsentNotification.yaml'
+    description: Consent notification object
+    required: true
+  responses:
+    '200':
+      $ref: '../components/responses/response_default.yaml'
+    '401':
+      description: API key is missing or invalid
+      headers:
+        WWW_Authenticate:
+          schema: 
+            type: string
+    '403':
+      description: Client is forbidden 
+
+put:
+  tags:
+    - AIU
+  summary: Put consent notification
+  description: API used by a CM to communicate status-change in a consent artifact to an AIU
+  operationId: consentNotification
+  security: 
+    - api_key: [  ]
+  parameters:
+    - name: id
+      description: ID of the consent artifact whose status has changed
+    - name: version
+      description: Protocol specification version used
+      in: header
+      required: false
+      schema: 
+        type: string
+        pattern: '\d\.\d\.\d'
+        example: '1.0.0'
+    - name: clientId
+      description: ID of the API client
+      in: header
+      required: true
+      schema:
+        type: string
+        example: 'cm1.com'
+    - name: signature
+      description: JWS signature on the request body generated using the client's private key (payload optional)
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: ldfER948jfyak39Kere+erjj/Ad..dfde51rjda8fsaf4fow+r4324
+  requestBody:
+    content:
+      application/json: 
+        schema:
+          $ref: '../components/schemas/aiu_putConsentNotification.yaml'
+    description: Consent notification object
+    required: true
+  responses:
+    '200':
+      $ref: '../components/responses/response_default.yaml'
+    '401':
+      description: API key is missing or invalid
+      headers:
+        WWW_Authenticate:
+          schema: 
+            type: string
+    '403':
+      description: Client is forbidden 
+

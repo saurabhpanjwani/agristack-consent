@@ -1,4 +1,5 @@
 type: object
+description: Asset of type *livestock*
 properties:
   assetType:
     type: string

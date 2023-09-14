@@ -1,0 +1,72 @@
+description: Consent artifact object
+type: object
+required:
+  - farmerId
+  - aipId
+  - aiuId
+  - purposeCode
+  - dateRange
+  - attributes
+properties:
+  farmerId:
+    description: Identifier of the farmer whose gave consent (i.e. whose data is intended to be shared)
+    type: string
+    pattern: '^\d{11}$'
+    example: 12341234123
+  aipId:
+    description: Identifier of the agricultural information provider (AIP) maintaining data 
+    type: string
+    example: 'AIP1'
+  aiuId:
+    description: Identifier of the agricultural information user (AIU) seeking data 
+    type: string
+    example: 'AIU1'
+  purposeCode:
+    description: Purpose code indicating the intended purpose of sharing from AIP to AIU 
+    type: string
+    example: 'CREDIT_KCC'
+    enum:
+      - CREDIT_KCC
+      - CREDIT_OTHER
+      - INPUT_SUBSIDY
+      - INSURANCE
+      - ADVICE
+  dateRange:
+    description: Upper/lower bounds on the time-instants for which data sharing is permitted. The AIP shares a data snapshot at a given instant.
+    type: object
+    required: 
+      - to
+    properties:
+      from:
+        description: Lower bound of the date range
+        type: string
+        format: date
+        example: '2023-10-01'
+      to:
+        description: Upper bound of the date range
+        type: string
+        format: date
+        example: '2023-10-02'
+  attributes:
+    description: Set of data attributes which are to be shared
+    type: object
+    properties:
+      profileAttributes:
+        description: List of profile attributes to be shared
+        type: array
+        example: '[NAME, DOB, FARMER_TYPE]'
+        items:
+          type: string
+          enum:
+            - NAME
+            - GENDER
+            - DOB
+            - ADDRESS
+            - FARMER_TYPE  
+            - CASTE_INFO
+            - EDUCATIONAL_QUALIFICATION
+      assetAttributes:
+        description: List of asset attributes to be shared
+        oneOf:
+          $ref: 'assetFarm.yaml'
+          $ref: 'assetLivestock.yaml'

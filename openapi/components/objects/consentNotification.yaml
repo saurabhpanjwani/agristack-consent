@@ -1,0 +1,20 @@
+description: Consent notification object. Used to communicate consent grant, consent denial and any form of consent-status-change (e.g. revocation).
+type: object
+required:
+  - id
+  - status
+properties:
+  id: 
+    description: ID of the consent artifact
+    type: string
+    example: 'consent-cm1-37934242348'
+    maxLength: 99
+  status:
+    description: Status of the consent artifact. Note: ACTIVE may mean CONSENT_GRANTED or CONSENT_RESUMED
+    type: string
+    example: 'ACTIVE'
+    enum:
+      - ACTIVE
+      - DENIED
+      - REVOKED
+      - PAUSED
