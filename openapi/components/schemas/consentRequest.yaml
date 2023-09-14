@@ -98,10 +98,10 @@ properties:
             description: List of asset types and associated metadata that are sought
               # type: array
               # items:
-              type: object
-              oneOf: 
-                - $ref: '../objects/asset_farm.yaml'
-                - $ref: '../objects/asset_livestock.yaml'
+            type: object
+            oneOf: 
+              - $ref: '../objects/asset_farm.yaml'
+              - $ref: '../objects/asset_livestock.yaml'
                   
                   #              properties:
                   #                assetType: 
