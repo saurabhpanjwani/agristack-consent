@@ -1,12 +1,20 @@
 post:
   tags:
     - AIU
-  summary: Post consent notification
+  summary: Post consent notifications
   description: API used by a CM to communicate successful or failed generation of consent artifacts to an AIU
-  operationId: consentNotification
+  operationId: consentNotifications
   security: 
     - api_key: [  ]
   parameters:
+    - name: artifactId
+      description: ID of the consent artifact generated
+      in: path
+      required: true
+      schema: 
+        type: string
+        example: 'consent-cm1-37934242348'
+        maxLength: 99
     - name: version
       description: Protocol specification version used
       in: header
@@ -53,14 +61,19 @@ post:
 put:
   tags:
     - AIU
-  summary: Put consent notification
+  summary: Put consent notifications
   description: API used by a CM to communicate status-change in a consent artifact to an AIU
-  operationId: consentNotification
+  operationId: consentNotifications
   security: 
     - api_key: [  ]
   parameters:
-    - name: id
-      description: ID of the consent artifact whose status has changed
+    - name: artifactId
+      description: ID of the consent artifact whose status changed
+      in: path
+      required: true
+      schema: 
+        type: string
+        example: 'consent-cm1-37934242348'
     - name: version
       description: Protocol specification version used
       in: header

@@ -48,14 +48,14 @@ servers:
 paths:
   /nm/serviceInfo:
     $ref: paths/nm_serviceInfo.yaml
-  /cm/consentRequest:
-    $ref: paths/cm_consentRequest.yaml
-  /cm/consentArtifact:
-    $ref: paths/cm_consentArtifact.yaml
-  /aiu/consentRequestAck:
-    $ref: paths/aiu_consentRequestAck.yaml
-  /aiu/consentNotification:
-    $ref: paths/aiu_consentNotification.yaml
+  /cm/consentRequests:
+    $ref: paths/cm_consentRequests.yaml
+  /cm/consentArtifacts/{artifactId}:
+    $ref: paths/cm_consentArtifacts_{artifactId}.yaml
+  /aiu/consentRequestAcks:
+    $ref: paths/aiu_consentRequestAcks.yaml
+  /aiu/consentNotifications/{artifactId}:
+    $ref: paths/aiu_consentNotifications_{artifactId}.yaml
 components:
   securitySchemes:
     #main_auth:
