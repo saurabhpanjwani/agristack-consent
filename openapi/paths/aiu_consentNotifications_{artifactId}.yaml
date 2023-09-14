@@ -3,7 +3,7 @@ post:
     - AIU
   summary: Post consent notifications
   description: API used by a CM to communicate successful or failed generation of consent artifacts to an AIU
-  operationId: consentNotifications
+  operationId: postConsentNotifications
   security: 
     - api_key: [  ]
   parameters:
@@ -63,7 +63,7 @@ put:
     - AIU
   summary: Put consent notifications
   description: API used by a CM to communicate status-change in a consent artifact to an AIU
-  operationId: consentNotifications
+  operationId: putConsentNotifications
   security: 
     - api_key: [  ]
   parameters:

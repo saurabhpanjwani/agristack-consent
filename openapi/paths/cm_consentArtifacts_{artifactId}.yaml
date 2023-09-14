@@ -3,7 +3,7 @@ get:
     - CM
   summary: Get consent artifacts
   description: Returns the consent artifact corresponding to a given consent ID
-  operationId: consentArtifacts
+  operationId: postConsentArtifacts
   security:
     - api_key: [  ]
   parameters:

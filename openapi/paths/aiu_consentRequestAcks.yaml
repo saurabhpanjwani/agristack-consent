@@ -3,7 +3,7 @@ post:
     - AIU
   summary: Post consent request ack
   description: API used by a CM to ack a previously-received consent request, based on semantic validation of the request (i.e., after ensuring soundness of the values specified in the request)
-  operationId: consentRequestAck
+  operationId: postConsentRequestAcks
   security: 
     - api_key: [  ]
   parameters:

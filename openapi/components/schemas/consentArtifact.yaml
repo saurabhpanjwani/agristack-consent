@@ -68,5 +68,5 @@ properties:
       assetAttributes:
         description: List of asset attributes to be shared
         oneOf:
-          - $ref: 'assetFarm.yaml'
-          - $ref: 'assetLivestock.yaml'
+          - $ref: '../objects/assetFarm.yaml'
+          - $ref: '../objects/assetLivestock.yaml'
