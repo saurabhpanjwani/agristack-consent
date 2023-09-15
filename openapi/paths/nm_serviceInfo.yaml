@@ -25,3 +25,5 @@ get:
             type: string
     '403':
       description: Client is forbidden
+    '404':
+      description: Bad URL

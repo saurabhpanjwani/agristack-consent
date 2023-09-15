@@ -1,9 +1,9 @@
 post:
   tags:
-    - AIU
+    - AIP
   summary: Post consent notifications
-  description: API used by a CM to communicate successful or failed generation of consent artifacts to an AIU
-  operationId: postConsentNotificationsAiu
+  description: API used by a CM to communicate fresh consent artifacts to an AIP
+  operationId: postConsentNotificationsAip
   security: 
     - api_key: [  ]
   parameters:
@@ -43,7 +43,7 @@ post:
     content:
       application/json: 
         schema:
-          $ref: '../components/schemas/aiu_postConsentNotification.yaml'
+          $ref: '../components/schemas/aip_postConsentNotification.yaml'
     description: Consent notification object
     required: true
   responses:
@@ -64,10 +64,10 @@ post:
 
 put:
   tags:
-    - AIU
+    - AIP
   summary: Put consent notifications
-  description: API used by a CM to communicate status-change in a consent artifact to an AIU
-  operationId: putConsentNotificationsAiu
+  description: API used by a CM to communicate status-change in a consent artifact to an AIP
+  operationId: putConsentNotificationsAip
   security: 
     - api_key: [  ]
   parameters:
@@ -106,7 +106,7 @@ put:
     content:
       application/json: 
         schema:
-          $ref: '../components/schemas/aiu_putConsentNotification.yaml'
+          $ref: '../components/schemas/aip_putConsentNotification.yaml'
     description: Consent notification object
     required: true
   responses:

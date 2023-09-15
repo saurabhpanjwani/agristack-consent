@@ -1,7 +1,7 @@
 post: 
   tags: 
     - CM
-  summary: Post consent request
+  summary: Post consent requests
   description: API used by an AIU to send a fresh consent request to a CM
   operationId: postConsentRequests
   security: 
@@ -53,5 +53,5 @@ post:
             type: string
     '403':
       description: Client is forbidden
-
-
+    '404':
+      description: Bad URL

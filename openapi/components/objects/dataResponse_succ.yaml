@@ -1,0 +1,10 @@
+type: object
+description: getData response indicating success
+required:
+  - encryptedData
+properties:
+  encryptedData:
+    description: Encrypted version of the data in Base64 format; encryption is performed using 
+      public key encryption using the encryption key of the receiving AIU
+    type: string
+    example: 'AjyDii834pjkads_f023+TJf9ujk39fasaASFE39hafdee33'

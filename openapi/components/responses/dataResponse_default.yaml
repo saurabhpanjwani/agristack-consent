@@ -1,0 +1,34 @@
+description: Default response for getData
+headers:
+  signature: 
+    description: JWS signature on the response body generated using the server's private key (payload optional)
+    required: true
+    $ref: '../headers/signature.yaml'
+content:
+  application/json:
+    schema:
+      type: object
+      required: 
+        - transactionId
+        - timestamp
+        - main
+      properties:
+        meta:
+          description: Meta attributes of the API response
+          type: object
+          required:
+            - transactionId
+            - timestamp
+          properties:
+            transactionId:
+              description: Transaction ID linked to this request, as created by the transaction-initiating server 
+              type: string
+              example: 'aip1-29184739230238'
+            timestamp:
+              description: Response timestamp recorded by the API server
+              $ref: '../attributes/timestamp.yaml'
+        main:
+          description: Main attributes of the API response
+          oneOf:
+            - $ref: '../objects/dataResponse_succ.yaml'
+            - $ref: '../objects/dataResponse_fail.yaml'

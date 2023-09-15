@@ -56,6 +56,7 @@ properties:
               - 'err.attributesSought.profileAttributes.invalid'
               - 'err.attributesSought.assetAttributes.invalid'
               - 'err.timeout.invalid'
+              - 'err.callbackUrl.invalid'
           message:
             description: Verbose description of the error
             type: string

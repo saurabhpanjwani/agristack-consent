@@ -16,7 +16,7 @@ get:
         maxLength: 99
       required: true
     - name: transactionId
-      description: If the API client is an AIU, this must be set to be the transaction ID linked to the original consent request issued\
+      description: If the API client is an AIU, this must be set to be the transaction ID linked to the original consent request issued
         by that AIU. If the client is an AIP, it must be the transaction ID for the consent notification sent to that AIP
       in: query
       schema:
@@ -40,7 +40,7 @@ get:
         type: string
         example: 'aiu1.com'
     - name: signature
-      description: JWS signature on the request body generated using the client's private key (payload optional)
+      description: JWS signature on the request (URL+header) generated using the client's private key (payload optional)
       in: header
       required: true
       style: simple
@@ -67,4 +67,5 @@ get:
             type: string
     "403":
       description: Client is forbidden
-
+    "404":
+      description: Bad URL or unknown ID 

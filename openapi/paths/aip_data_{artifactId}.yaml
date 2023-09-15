@@ -1,0 +1,69 @@
+get:
+  tags:
+    - AIP
+  summary: Get data
+  description: API used by an AIU to fetch data from an AIP
+  operationId: getData
+  security: 
+    - api_key: [  ]
+  parameters:
+    - name: artifactId
+      description: ID of the consent artifact against which data is being fetched
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 'consent-cm1-37934242444'
+        maxLength: 99
+    - name: date
+      description: Date for which data snapshot is being fetched
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+        example: '2023-10-02'
+    - name: version
+      description: Protocol specification version used
+      in: header
+      required: false
+      schema: 
+        type: string
+        pattern: '\d\.\d\.\d'
+        example: '1.0.0'
+    - name: clientId
+      description: ID of the API client
+      in: header
+      required: true
+      schema:
+        type: string
+        example: 'aiu1.com'
+    - name: artifactHash
+      description: SHA-256 hash of the consent artifact against which data is being fetched
+      in: header
+      required: false
+      schema:
+        type: string
+        example: 'knmdfak83o_erndsk3+eekj343'
+    - name: signature
+      description: JWS signature on the request (URL+header) generated using the client's private key (payload optional)
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: ldfER948jfyak39Kere+erjj/Ad..dfde51rjda8fsaf4fow+r4324
+  responses:
+    '200':
+      $ref: '../components/responses/dataResponse_default.yaml'
+    '401':
+      description: API key is missing or invalid
+      headers:
+        WWW_Authenticate:
+          schema: 
+            type: string
+    '403':
+      description: Client is forbidden 
+    '404':
+      description: Bad URL or invalid artifact ID
