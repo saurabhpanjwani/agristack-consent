@@ -57,7 +57,7 @@ paths:
   /aiu/consentNotifications/{artifactId}:
     $ref: paths/aiu_consentNotifications_{artifactId}.yaml
   /aip/consentNotifications/{artifactId}:
-    $ref: paths/aip_consnetNotifications_{artifactId}.yaml
+    $ref: paths/aip_consentNotifications_{artifactId}.yaml
   /aip/data/{artifactId}:
     $ref: paths/aip_data_{artifactId}.yaml
 components:
