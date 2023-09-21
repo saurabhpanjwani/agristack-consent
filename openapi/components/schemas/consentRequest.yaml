@@ -64,7 +64,6 @@ properties:
         description: Upper and lower bounds on the time-instants for which data could be sought
         type: object
         required:
-          - from
           - to
         properties:
           from:

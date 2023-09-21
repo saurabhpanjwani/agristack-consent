@@ -9,7 +9,7 @@ required:
   - attributes
 properties:
   farmerId:
-    description: Identifier of the farmer whose gave consent (i.e. whose data is intended to be shared)
+    description: Identifier of the farmer who gave consent (i.e. whose data is intended to be shared)
     type: string
     pattern: '^\d{11}$'
     example: 12341234123

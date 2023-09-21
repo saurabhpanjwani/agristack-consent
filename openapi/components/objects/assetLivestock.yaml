@@ -1,5 +1,5 @@
 type: object
-description: Asset of type *Livestock*
+description: Asset of type *LIVESTOCK*
 properties:
   assetType:
     type: string
