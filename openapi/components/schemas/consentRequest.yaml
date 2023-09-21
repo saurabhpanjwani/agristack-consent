@@ -63,11 +63,11 @@ properties:
         format: date
         example: '2024-03-31'
       attributesSought:
-        description: Set of attributes sought by the client
+        description: Set of attributes being sought by the client
         type: object
         properties:
           farmerRegAttributes:
-            description: List of farmer registry attributes that are sought
+            description: List of farmer registry attributes that are being sought
             type: array
             example: '[{NAME, REQUIRED}, {GENDER, OPTIONAL}, {DOB, REQUIRED}, {ADDRESS, OPTIONAL}, {
               CASTE, OPTIONAL}, {FARMER_TYPE, REQUIRED}, {FARM_COUNT, REQUIRED}, {FARM_LIST, REQUIRED}]'
@@ -97,7 +97,7 @@ properties:
                     - REQUIRED
                     - OPTIONAL
           cropRegAttributes:
-            description: List of crop registry attributes that are sought
+            description: List of crop registry attributes that are being sought
             type: array
             example: '[ {CROP_COUNT, {KHARIF, 2023}, OPTIONAL}, {CROP_COUNT, {RABI, 2023}, OPTIONAL}, {CROP_COUNT, 
               {KHARIF, 2022}, OPTIONAL}, {CROP_LIST, {KHARIF, 2023}, OPTIONAL}, {CROP_LIST, {RABI, 2023}, OPTIONAL,

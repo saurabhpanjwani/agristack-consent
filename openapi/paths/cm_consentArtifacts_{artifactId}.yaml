@@ -16,12 +16,12 @@ get:
         maxLength: 99
       required: true
     - name: transactionId
-      description: If the API client is an AIU, this must be set to be the transaction ID linked to the original consent request issued
-        by that AIU. If the client is an AIP, it must be the transaction ID for the consent notification sent to that AIP
+      description: This must be set to be the transaction ID linked to the original consent request issued
+        by the AIU that calls the API
       in: query
       schema:
         type: string
-        example: 'consent-cm1-37934242348'
+        example: 'txn-37934242348'
         maxLength: 99
       required: true
     - name: version
@@ -54,6 +54,7 @@ get:
       headers:
         signature:
           description: JWS signature on the response body generated using the server's private key (payload optional)
+          required: true
           $ref: '../components/headers/signature.yaml'
       content:
         application/json:
