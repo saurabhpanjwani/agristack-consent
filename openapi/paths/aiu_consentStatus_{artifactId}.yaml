@@ -44,7 +44,7 @@ post:
       application/json: 
         schema:
           $ref: '../components/schemas/aiu_postConsentStatus.yaml'
-    description: Consent notification object
+    description: Consent status object
     required: true
   responses:
     '200':
@@ -78,6 +78,7 @@ put:
       schema: 
         type: string
         example: 'consent-cm1-37934242348'
+        maxLength: 99
     - name: version
       description: Protocol specification version used
       in: header
@@ -107,7 +108,7 @@ put:
       application/json: 
         schema:
           $ref: '../components/schemas/aiu_putConsentStatus.yaml'
-    description: Consent notification object
+    description: Consent status object
     required: true
   responses:
     '200':

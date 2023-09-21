@@ -1,0 +1,86 @@
+type: object
+required:
+  - meta
+  - main
+properties:
+  meta:
+    description: Meta attributes of the API request
+    type: object
+    required:
+      - requestId
+      - timestamp
+      - callbackUrl
+      - timeout
+    properties:
+      requestId:
+        description: Unique identifier of the API request, set by the API client
+        $ref: '../attributes/requestId.yaml'
+      timestamp:
+        description: Request timestamp, in ISO 8601 format
+        $ref: '../attributes/timestamp.yaml'
+      callbackUrl:
+        description: Client's callback URL to be used by the server
+        type: string
+        format: uri
+        example: 'http://aiu1-callback.com'
+      timeout: 
+        description: The time after which the request, if left unserved by the server, is deemed to have expired
+        type: string
+        format: date-time
+        example: '2023-10-02T23:59:59Z'
+  main: 
+    description: Main attributes of the API request
+    type: object
+    required:
+      - artifact
+      - signature
+      - attributesSought
+    properties: 
+      artifact:
+        description: Consent artifact against which data is being requested
+        $ref: '../schemas/consentArtifact.yaml'
+      signature:
+        description: JWS signature on the consent artifact generated using the private key of the issuing consent manager (payload optional)
+        type: string
+        example: kjfd34mdf=KedfnfEpd2dmd+kDf..kfdl89rpK2Bsaf4ypS+ruE1o 
+      attributesSought:
+        description: Set of attributes that the client AIU intends to fetch in the current data request
+        type: object
+        properties: 
+          farmerRegAttributes: 
+            description: List of farmer registry attributes whose value the client AIU intends to fetch
+            type: array
+            example: '[NAME, DOB, FARMER_TYPE, FARM_LIST]'
+            items: 
+              description: Name of the attribute under consideration
+              type: string
+              enum: 
+                - NAME
+                - GENDER
+                - DOB
+                - ADDRESS
+                - CASTE
+                - FARMER_TYPE # Cultivator or owner?
+                - FARM_COUNT
+                - FARM_LIST
+          cropRegAttributes: 
+            description: List of crop registry attributes whose data the client AIU intends to fetch
+            type: array
+            example: '[ {CROP_COUNT, {KHARIF, 2022}}, {CROP_COUNT, {RABI, 2023}}, {CROP_LIST, {KHARIF, 2023}} ]'
+            items:
+              type: object
+              description: Object that defines each item in the list of crop registry attributes whose data values 
+                the client AIU intendes to fetch
+              required:
+                - attributeName
+                - seasonName
+              properties:
+                attributeName: 
+                  description: Name of the attribute under consideration
+                  type: string
+                  enum: 
+                    - CROP_COUNT
+                    - CROP_LIST
+                seasonName:
+                  description: Name of the season for which the attribute's value is sought
+                  $ref: '../objects/seasonName.yaml'

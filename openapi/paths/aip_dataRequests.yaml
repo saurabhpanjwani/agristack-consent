@@ -1,0 +1,53 @@
+post:
+  tags:
+    - AIP
+  summary: Post data requests
+  description: API used by an AIU to send a fresh data request to an AIP
+  operationId: postDataRequests
+  security: 
+    - api_key: [ ]
+  parameters:
+    - name: version
+      description: Protocol specification version used
+      in: header
+      required: false
+      schema: 
+        type: string
+        pattern: '\d\.\d\.\d'
+        example: '1.0.0'
+    - name: clientId
+      description: ID of the API client
+      in: header
+      required: true
+      schema:
+        type: string
+        example: 'aiu1.com'
+    - name: signature
+      description: JWS signature on the request body generated using the client's private key (payload optional)
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: ldfER948jfyak39Kere+erjj/Ad..dfde51rjda8fsaf4fow+r4324
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/dataRequest.yaml'
+    description: Data request object
+    required: true
+  responses:
+    '200':
+      $ref: '../components/responses/response_default.yaml'
+    '401':
+      description: API key is missing or invalid
+      headers:
+        WWW_Authenticate:
+          schema: 
+            type: string
+    '403':
+      description: Client is forbidden
+    '404':
+      description: Bad URL 

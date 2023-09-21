@@ -4,7 +4,7 @@ required:
   - main
 properties:
   meta:
-    description: Meta-attributes of the API request
+    description: Meta attributes of the API request
     type: object
     required:
       - requestId

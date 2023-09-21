@@ -21,7 +21,7 @@ properties:
           - REVOKED
           - PAUSED
       timestamp:
-        description: Response timestamp, in ISO 8601 format 
+        description: Timestamp placed by the issuing consent manager, in ISO 8601 format 
         $ref: '../attributes/timestamp.yaml'
   main:
     description: Main attributes of the consent artifact
@@ -44,11 +44,11 @@ properties:
         type: string
         example: 'AIP1'
       aiuId:
-        description: Identifier of the agricultural information user (AIU) seeking data 
+        description: Identifier of the agricultural information user (AIU) intending to fetch data from the AIP
         type: string
         example: 'AIU1'
       purposeCode:
-        description: Purpose code indicating the intended purpose of sharing from AIP to AIU 
+        description: Purpose code indicating the intended purpose of the AIU for fetching data from the AIP 
         type: string
         example: 'CREDIT_KCC'
         enum:
@@ -56,14 +56,13 @@ properties:
           - CREDIT_OTHER
           - INPUT_SUBSIDY
           - INSURANCE
-          - ADVICE
       validUntil:
-        description: Date until which permission to fetch data is granted
+        description: Date until which permission to fetch data has been granted
         type: string
         format: date
         example: '2024-03-31'
       attributes:
-        description: Set of data attributes that can be fetched by the AIU by presenting this artifact to the AIP
+        description: Set of data attributes that can be fetched against the artifact
         type: object
         properties:
           farmerRegAttributes:
@@ -85,7 +84,7 @@ properties:
             description: List of crop registry attributes that can be fetched
             type: array
             example: '[ {CROP_COUNT, {KHARIF, 2023}}, {CROP_COUNT, {RABI, 2023}}, {CROP_COUNT, {KHARIF, 2022}},
-              {CROP_LIST, {KHARIF, 2023}}, {CROP_LIST, {RABI, 2023}}, {CROP_LIST, {KHARIF, 2022}} ]'
+              {CROP_LIST, {KHARIF, 2022}} ]'
             items:
               type: object 
               description: Object that defines each item in the list of crop registry attributes permitted to be fetched

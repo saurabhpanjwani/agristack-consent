@@ -58,6 +58,8 @@ paths:
     $ref: paths/aiu_consentStatus_{artifactId}.yaml
       # /aip/consentNotifications/{artifactId}:
       # $ref: paths/aip_consentNotifications_{artifactId}.yaml
+  /aip/dataRequests:
+    $ref: paths/aip_dataRequests.yaml
   /aip/data/{artifactId}:
     $ref: paths/aip_data_{artifactId}.yaml
 components:
