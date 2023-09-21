@@ -22,8 +22,7 @@ content:
           $ref: '../attributes/requestId.yaml'
         transactionId:
           description: Transaction ID linked to this request, as created by the transaction-initiating server 
-          type: string
-          example: 'txn-29184739230238'
+          $ref: '../attributes/transactionId.yaml'
         timestamp:
           description: Response timestamp recorded by the server
           $ref: '../attributes/timestamp.yaml'

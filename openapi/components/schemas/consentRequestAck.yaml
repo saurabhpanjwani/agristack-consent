@@ -13,17 +13,13 @@ properties:
     properties:
       requestId:
         description: Unique identifier of the API request, set by the API client
-        type: string
-        example: 'req-8323294'
+        $ref: '../attributes/requestId.yaml'
       timestamp:
         description: Request timestamp, in ISO 8601 format
-        type: string
-        format: date-time
-        example: '2023-10-01T23:59:59Z'
+        $ref: '../attributes/timestamp.yaml'
       transactionId:
         description: Transaction ID linked to the original consent request
-        type: string
-        example: 'cm1-29184739230238'
+        $ref: '../attributes/transactionId.yaml'
   main:
     description: Main attributes of the API request
     type: object
@@ -32,11 +28,7 @@ properties:
     properties: 
       result:
         description: Result created based on semantic validation of the original consent request
-        type: string
-        enum:
-          - OK
-          - ERR
-        example: 'ERR'
+        $ref: '../attributes/result.yaml'
       error:
         description: Error code and message
         type: object
@@ -52,13 +44,12 @@ properties:
               - 'err.farmerId.expired'
               - 'err.aipId.invalid'
               - 'err.purposeCode.invalid'
-              - 'err.dateRange.invalid'
-              - 'err.attributesSought.profileAttributes.invalid'
-              - 'err.attributesSought.assetAttributes.invalid'
+              - 'err.consentUntil.invalid'
+              - 'err.attributesSought.farmerRegAttributes.invalid'
+              - 'err.attributesSought.cropRegAttributes.invalid'
               - 'err.timeout.invalid'
               - 'err.callbackUrl.invalid'
           message:
             description: Verbose description of the error
             type: string
             example: "Invalid Farmer ID: Farmer ID must be numeric"
-
