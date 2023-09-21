@@ -1,9 +1,10 @@
 post:
   tags:
     - AIU
-  summary: Post consent request acks
-  description: API used by a CM to ack a previously-received consent request, based on semantic validation of the request (i.e., after ensuring soundness of the values specified in the request)
-  operationId: postConsentRequestAcks
+  summary: Post data request acks
+  description: API used by an AIP to ack a previously-received data request, based on semantic validation of the request 
+    (i.e., after ensuring soundness of the values specified in the request)
+  operationId: postDataRequestAcks
   security: 
     - api_key: [  ]
   parameters:
@@ -21,7 +22,7 @@ post:
       required: true
       schema:
         type: string
-        example: 'cm1.com'
+        example: 'aip1.com'
     - name: signature
       description: JWS signature on the request body generated using the client's private key (payload optional)
       in: header
@@ -35,8 +36,8 @@ post:
     content:
       application/json: 
         schema:
-          $ref: '../components/schemas/consentRequestAck.yaml'
-    description: Consent request Ack object
+          $ref: '../components/schemas/dataRequestAck.yaml'
+    description: Data request Ack object
     required: true
   responses:
     '200': 
