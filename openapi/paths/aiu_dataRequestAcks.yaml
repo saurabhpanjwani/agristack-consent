@@ -41,7 +41,7 @@ post:
     required: true
   responses:
     '200': 
-      $ref: '../components/responses/response_default.yaml'
+      $ref: '../components/responses/responseDataAck_default.yaml'
         #    description: Default
         #    headers:
         #      signature: 

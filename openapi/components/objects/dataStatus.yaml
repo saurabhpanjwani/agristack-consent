@@ -1,0 +1,13 @@
+description: Data status object. Used to communicate readiness (or not) of data to be fetched from an AIP 
+type: object
+required:
+  - status
+properties:
+  status:
+    description: Status of the data 
+    type: string
+    example: 'READY'
+    enum:
+      - READY
+      - FAILED
+      - PAUSED

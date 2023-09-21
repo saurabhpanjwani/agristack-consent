@@ -2,27 +2,19 @@ get:
   tags:
     - AIP
   summary: Get data
-  description: API used by an AIU to fetch data from an AIP
+  description: API used by an AIU to fetch data from an AIP, once the data is ready to be fetched
   operationId: getData
   security: 
     - api_key: [  ]
   parameters:
-    - name: artifactId
-      description: ID of the consent artifact against which data is being fetched
+    - name: transactionId
+      description: Transaction ID linked with the original data request, in whose context data is being fetched
       in: path
       required: true
       schema:
         type: string
-        example: 'consent-cm1-37934242444'
+        example: 'txn-29184739230238'
         maxLength: 99
-    - name: date
-      description: Date for which data snapshot is being fetched
-      in: query
-      required: false
-      schema:
-        type: string
-        format: date
-        example: '2023-10-02'
     - name: version
       description: Protocol specification version used
       in: header
@@ -56,7 +48,7 @@ get:
         example: ldfER948jfyak39Kere+erjj/Ad..dfde51rjda8fsaf4fow+r4324
   responses:
     '200':
-      $ref: '../components/responses/dataResponse_default.yaml'
+      $ref: '../components/responses/responseData_default.yaml'
     '401':
       description: API key is missing or invalid
       headers:

@@ -9,8 +9,7 @@ content:
     schema:
       type: object
       required: 
-        - transactionId
-        - timestamp
+        - meta 
         - main
       properties:
         meta:
@@ -21,9 +20,9 @@ content:
             - timestamp
           properties:
             transactionId:
-              description: Transaction ID linked to this request, as created by the transaction-initiating server 
+              description: Transaction ID linked to the original data request, in whose context the current response is being sent
               type: string
-              example: 'aip1-29184739230238'
+              example: 'txn-29184739230238'
             timestamp:
               description: Response timestamp recorded by the API server
               $ref: '../attributes/timestamp.yaml'

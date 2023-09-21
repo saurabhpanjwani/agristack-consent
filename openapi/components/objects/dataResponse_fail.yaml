@@ -6,12 +6,14 @@ properties:
   code: 
     description: Error code
     type: string
-    example: 'err.malformedHeader'
+    example: 'err.transactionId.invalid'
     enum:
+      - 'err.transactionId.invalid'
       - 'err.version.unsupported'
       - 'err.malformedHeader'
-      - 'err.incorrectConsentHash'
+      - 'err.artifactHash.mismatch'
   message:
     description: Verbose description of the error
     type: string
-    example: "Malformed Header: client ID missing"
+    example: "Artifact Hash Mismatch: the hash of the consent artifact supplied in the request does not match the artifact 
+      hash maintained for the transaction linked to the given transaction ID"

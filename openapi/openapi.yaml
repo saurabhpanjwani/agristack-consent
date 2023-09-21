@@ -60,10 +60,12 @@ paths:
       # $ref: paths/aip_consentNotifications_{artifactId}.yaml
   /aiu/dataRequestAcks:
     $ref: paths/aiu_dataRequestAcks.yaml
+  /aiu/dataStatus:
+    $ref: paths/aiu_dataStatus.yaml
   /aip/dataRequests:
     $ref: paths/aip_dataRequests.yaml
-  /aip/data/{artifactId}:
-    $ref: paths/aip_data_{artifactId}.yaml
+  /aip/data/{transactionId}:
+    $ref: paths/aip_data_{transactionId}.yaml
 components:
   securitySchemes:
     #main_auth:

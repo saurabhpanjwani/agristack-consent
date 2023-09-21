@@ -1,0 +1,48 @@
+description: Default
+headers:
+  signature: 
+    description: JWS signature on the response body generated using the server's private key (payload optional)
+    required: true
+    $ref: '../headers/signature.yaml'
+content:
+  application/json:
+    schema:
+      type: object
+      required: 
+        - result
+        - requestId
+        - transactionId
+        - timestamp
+      properties:
+        result:
+          description: Result created based on immediate validation of the request
+          $ref: '../attributes/result.yaml'
+        requestId:
+          description: ID of the request which is being responded to
+          $ref: '../attributes/requestId.yaml'
+        transactionId:
+          description: Transaction ID linked to this request, as created by the transaction-initiating server 
+          $ref: '../attributes/transactionId.yaml'
+        timestamp:
+          description: Response timestamp recorded by the server
+          $ref: '../attributes/timestamp.yaml'
+        error:
+          description: Error code and message 
+          type: object
+          required:
+            - code
+          properties:
+            code:
+              description: Error code
+              type: string
+              example: 'err.transactionId.invalid'
+              enum:
+                - 'err.version.unsupported'
+                - 'err.malformedHeader'
+                - 'err.malformedMeta'
+                - 'err.transactionId.invalid'
+                - 'err.malformedMain'
+            message:
+              description: Verbose description of the error
+              type: string
+              example: "Invalid Transaction ID: No such Transaction ID found"

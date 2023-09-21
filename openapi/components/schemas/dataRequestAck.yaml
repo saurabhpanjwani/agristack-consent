@@ -18,7 +18,7 @@ properties:
         description: Request timestamp, in ISO 8601 format
         $ref: '../attributes/timestamp.yaml'
       transactionId:
-        description: Transaction ID linked to the original consent request
+        description: Transaction ID linked to the original data request
         $ref: '../attributes/transactionId.yaml'
   main:
     description: Main attributes of the API request
