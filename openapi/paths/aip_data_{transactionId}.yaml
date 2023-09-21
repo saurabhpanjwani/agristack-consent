@@ -33,7 +33,7 @@ get:
     - name: artifactHash
       description: SHA-256 hash of the consent artifact against which data is being fetched
       in: header
-      required: false
+      required: true
       schema:
         type: string
         example: 'knmdfak83o_erndsk3+eekj343'
