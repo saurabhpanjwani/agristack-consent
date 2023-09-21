@@ -16,19 +16,14 @@ content:
       properties:
         result:
           description: Result created based on immediate validation of the request
-          type: string
-          enum:
-            - OK
-            - ERR
-          example: 'ERR'
+          $ref: '../attributes/result.yaml'
         requestId:
           description: ID of the request which is being responded to
-          type: string
-          example: 'req-29184739230238'
+          $ref: '../attributes/requestId.yaml'
         transactionId:
           description: Transaction ID linked to this request, as created by the transaction-initiating server 
           type: string
-          example: 'cm1-29184739230238'
+          example: 'txn-29184739230238'
         timestamp:
           description: Response timestamp recorded by the server
           $ref: '../attributes/timestamp.yaml'

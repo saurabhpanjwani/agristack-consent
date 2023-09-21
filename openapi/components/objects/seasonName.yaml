@@ -1,0 +1,18 @@
+type: object
+required:
+  - seasonType
+  - year
+properties: 
+  seasonType:
+    description: Type of the season 
+    type: string
+    enum: 
+      - KHARIF
+      - RABI
+      - ZAID
+    example: 'KHARIF'
+  year:
+    description: Year of consideration
+    type: string
+    format: year
+    example: '2023'

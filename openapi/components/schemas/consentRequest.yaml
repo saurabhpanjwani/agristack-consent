@@ -14,13 +14,10 @@ properties:
     properties:
       requestId:
         description: Unique identifier of the API request, set by the API client
-        type: string
-        example: 'req-8323294'
+        $ref: '../attributes/requestId.yaml'
       timestamp:
         description: Request timestamp, in ISO 8601 format
-        type: string
-        format: date-time
-        example: '2023-10-01T23:59:59Z'
+        $ref: '../attributes/timestamp.yaml'
       callbackUrl:
         description: Client's callback URL to be used by the server
         type: string
@@ -38,7 +35,7 @@ properties:
       - farmerId
       - aipId
       - purposeCode
-      - dateRange
+      - consentUntil
       - attributesSought
     properties:
       farmerId:
@@ -60,45 +57,74 @@ properties:
           - INPUT_SUBSIDY
           - INSURANCE
           - ADVICE
-      dateRange:
-        description: Upper and lower bounds on the time-instants for which data could be sought
-        type: object
-        required:
-          - to
-        properties:
-          from:
-            description: Lower bound of the date range
-            type: string
-            format: date
-            example: '2023-10-01'
-          to:
-            description: Upper bound of the date range
-            type: string
-            format: date
-            example: '2023-10-02'
+      consentUntil:
+        description: Date until which permission to fetch data is being sought
+        type: string
+        format: date
+        example: '2024-03-31'
       attributesSought:
         description: Set of attributes sought by the client
         type: object
         properties:
-          profileAttributes:
-            description: List of profile attributes that are sought
+          farmerRegAttributes:
+            description: List of farmer registry attributes that are sought
             type: array
-            example: '[NAME, GENDER, CASTE, FARMER_TYPE]'
+            example: '[{NAME, REQUIRED}, {GENDER, OPTIONAL}, {DOB, REQUIRED}, {ADDRESS, OPTIONAL}, {
+              CASTE, OPTIONAL}, {FARMER_TYPE, REQUIRED}, {FARM_COUNT, REQUIRED}, {FARM_LIST, REQUIRED}]'
             items:
-              type: string
-              enum:
-                - NAME
-                - GENDER
-                - DOB
-                - ADDRESS
-                - CASTE
-                - FARMER_TYPE # Cultivator or owner?
-          assetAttributes:
-            description: List of asset types and associated metadata that are sought
-            oneOf: 
-              - $ref: '../objects/assetFarm.yaml'
-              - $ref: '../objects/assetLivestock.yaml'
-                  
+              type: object
+              description: Object that defines each item in the list of sought farmer registry attributes
+              required:
+                - attributeName
+                - requiredOrNot
+              properties: 
+                attributeName: 
+                  description: Name of the sought attribute
+                  type: string
+                  enum: 
+                    - NAME
+                    - GENDER
+                    - DOB
+                    - ADDRESS
+                    - CASTE
+                    - FARMER_TYPE # Cultivator or owner?
+                    - FARM_COUNT
+                    - FARM_LIST
+                requiredOrNot: 
+                  description: Flag indicating whether the attribute is required or not
+                  type: string
+                  enum:
+                    - REQUIRED
+                    - OPTIONAL
+          cropRegAttributes:
+            description: List of crop registry attributes that are sought
+            type: array
+            example: '[ {CROP_COUNT, {KHARIF, 2023}, OPTIONAL}, {CROP_COUNT, {RABI, 2023}, OPTIONAL}, {CROP_COUNT, 
+              {KHARIF, 2022}, OPTIONAL}, {CROP_LIST, {KHARIF, 2023}, OPTIONAL}, {CROP_LIST, {RABI, 2023}, OPTIONAL,
+              {CROP_LIST, {KHARIF, 2022}, OPTIONAL} ]' 
+            items:
+              type: object
+              description: Object that defines each item in the list of sought crop registry attributes
+              required:
+                - attributeName
+                - seasonName
+                - requiredOrNot
+              properties: 
+                attributeName: 
+                  description: Name of the sought attribute
+                  type: string
+                  enum: 
+                    - CROP_COUNT
+                    - CROP_LIST
+                seasonName:
+                  description: Name of the season for which the attribute's value is sought
+                  $ref: '../objects/seasonName.yaml'
+                requiredOrNot:
+                  description: Flag indicating whether the attribute is required or not
+                  type: string
+                  enum:
+                    - REQUIRED
+                    - OPTIONAL
               # type: array
               # items:
                   #              properties:
