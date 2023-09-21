@@ -54,10 +54,10 @@ paths:
     $ref: paths/cm_consentArtifacts_{artifactId}.yaml
   /aiu/consentRequestAcks:
     $ref: paths/aiu_consentRequestAcks.yaml
-  /aiu/consentNotifications/{artifactId}:
-    $ref: paths/aiu_consentNotifications_{artifactId}.yaml
-  /aip/consentNotifications/{artifactId}:
-    $ref: paths/aip_consentNotifications_{artifactId}.yaml
+  /aiu/consentStatus/{artifactId}:
+    $ref: paths/aiu_consentStatus_{artifactId}.yaml
+      # /aip/consentNotifications/{artifactId}:
+      # $ref: paths/aip_consentNotifications_{artifactId}.yaml
   /aip/data/{artifactId}:
     $ref: paths/aip_data_{artifactId}.yaml
 components:

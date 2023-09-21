@@ -1,4 +1,4 @@
-description: Consent notification object. Used to communicate grant, denial and any form of status-change (e.g. revocation).
+description: Consent status object. Used to communicate grant, denial and any form of status-change (e.g. revocation).
 type: object
 required:
   - status
