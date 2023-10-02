@@ -24,7 +24,9 @@ properties:
         format: uri
         example: 'http://aiu1-callback.com'
       timeout: 
-        description: The time after which the request, if left unserved by the server, is deemed to have expired
+        description: An upper bound on the time instant at which the request expires. (The request may expire earlier
+          than this time if it is served fully by the server earlier. It will be deemed to expire at this time if it 
+          has not been fully served earlier.)
         type: string
         format: date-time
         example: '2023-10-02T23:59:59Z'
