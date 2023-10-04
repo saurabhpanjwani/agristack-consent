@@ -83,8 +83,10 @@ properties:
           cropRegAttributes:
             description: List of crop registry attributes that can be fetched
             type: array
-            example: '[ {CROP_COUNT, {KHARIF, 2023}}, {CROP_COUNT, {RABI, 2023}}, {CROP_COUNT, {KHARIF, 2022}},
-              {CROP_LIST, {KHARIF, 2022}} ]'
+            example: '[ {"attributeName": "CROP_COUNT", "seasonName": {"seasonType": "KHARIF", "year": "2023"}}, 
+              {"attributeName": "CROP_COUNT", "seasonName": {"seasonType": "RABI", "year": "2023"}},
+              {"attributeName": "CROP_COUNT", "seasonName": {"seasonType": "KHARIF", "year": "2022"}},
+              {"attributeName": "CROP_LIST", "seasonName": {"seasonType": "KHARIF", "year": "2022"}} ]'
             items:
               type: object 
               description: Object that defines each item in the list of crop registry attributes permitted to be fetched
@@ -101,3 +103,18 @@ properties:
                 seasonName:
                   description: Name of the season for which the attribute's value is sought
                   $ref: '../objects/seasonName.yaml'
+  signature:
+    description: Digital signature on the meta and main attributes of the artifact
+    type: object
+    required:
+      - cmId
+      - signature
+    properties:
+      cmId:
+        description: ID of the consent manager signing the artifact
+        type: string
+        example: CM-45209311
+      signature:
+        description: JWS signature
+        type: string
+        example: kjfd34mdf=KedfnfEpd2dmd+kDf..kfdl89rpK2Bsaf4ypS+ruE1o 

@@ -2,29 +2,41 @@ type: array
 description: List of services that the client is allowed to access
 items: 
   type: object
+  description: Object containing information about a single service in the service layer 
   required:
     - baseUrl
     - certificates
     - name
     - owner
-    - ownerType
   properties:
     name:
       type: string
       description: Name of the service
       example: CM1_Main
     owner:
-      type: string
-      description: Name of the entity who runs the service
-      example: CM1
-    ownerType:
-      type: string
-      description: Type of the entity who runs the service
-      example: CM
-      enum:
-        - CM
-        - AIP
-        - AIU
+      type: object
+      description: Details of the entity that owns and runs the service
+      required:
+        - entityType
+        - entityName
+        - entityId
+      properties:
+        entityType: 
+          type: string
+          description: Type of the entity
+          example: CM
+          enum:
+            - CM
+            - AIP
+            - AIU
+        entityName: 
+          type: string
+          description: Name of the entity
+          example: CM1
+        entityId:
+          type: string
+          description: Entity ID
+          example: CM-45209311
     baseUrl:
       pattern: uri
       type: string

@@ -36,12 +36,13 @@ properties:
     required: 
       - farmerId
       - aipId
+      - aiuId
       - purposeCode
       - consentUntil
       - attributesSought
     properties:
       farmerId:
-        description: Identifier of the farmer whose data is being sought by the client
+        description: Identifier of the farmer whose data is being sought
         type: string
         pattern: '^\d{11}$'
         example: 12341234123
@@ -49,6 +50,10 @@ properties:
         description: Identifier of the agricultural information provider (AIP) maintaining the data being sought
         type: string
         example: 'KA'
+      aiuId:
+        description: Identifier of the agricultural information user (AIU) seeking data
+        type: string
+        example: 'BoB'
       purposeCode:
         description: Purpose code indicating the intended use of the sought data 
         type: string
@@ -65,20 +70,22 @@ properties:
         format: date
         example: '2024-03-31'
       attributesSought:
-        description: Set of attributes being sought by the client
+        description: Set of attributes being sought
         type: object
         properties:
           farmerRegAttributes:
             description: List of farmer registry attributes that are being sought
             type: array
-            example: '[{NAME, REQUIRED}, {GENDER, OPTIONAL}, {DOB, REQUIRED}, {ADDRESS, OPTIONAL}, {
-              CASTE, OPTIONAL}, {FARMER_TYPE, REQUIRED}, {FARM_COUNT, REQUIRED}, {FARM_LIST, REQUIRED}]'
+            example: '[ {"attributeName": "NAME", "required": true}, {"attributeName": "GENDER", "required": false}, 
+              {"attributeName": "DOB", "required": true}, {"attributeName": "ADDRESS", "required": false}, 
+              {"attributeName": "CASTE", "required": false}, {"attributeName": "FARMER_TYPE", "required": true}, 
+              {"attributeName": "FARM_COUNT", "required": true}, {"attributeName": "FARM_LIST", "required": true} ]'
             items:
               type: object
               description: Object that defines each item in the list of sought farmer registry attributes
               required:
                 - attributeName
-                - requiredOrNot
+                - required
               properties: 
                 attributeName: 
                   description: Name of the sought attribute
@@ -92,25 +99,25 @@ properties:
                     - FARMER_TYPE # Cultivator or owner?
                     - FARM_COUNT
                     - FARM_LIST
-                requiredOrNot: 
+                required: 
                   description: Flag indicating whether the attribute is required or not
-                  type: string
-                  enum:
-                    - REQUIRED
-                    - OPTIONAL
+                  type: boolean
           cropRegAttributes:
             description: List of crop registry attributes that are being sought
             type: array
-            example: '[ {CROP_COUNT, {KHARIF, 2023}, OPTIONAL}, {CROP_COUNT, {RABI, 2023}, OPTIONAL}, {CROP_COUNT, 
-              {KHARIF, 2022}, OPTIONAL}, {CROP_LIST, {KHARIF, 2023}, OPTIONAL}, {CROP_LIST, {RABI, 2023}, OPTIONAL,
-              {CROP_LIST, {KHARIF, 2022}, OPTIONAL} ]' 
+            example: '[ {"attributeName": "CROP_COUNT", "seasonName": {"seasonType": "KHARIF", "year": 2023}, "required": false}, 
+              {"attributeName": "CROP_COUNT", "seasonName": {"seasonType": "RABI", "year": 2023}, "required": false}, 
+              {"attributeName": "CROP_COUNT", "seasonName": {"seasonType": "KHARIF", "year": 2022}, "required": false}, 
+              {"attributeName": "CROP_LIST", "seasonName": {"seasonType": "KHARIF", "year": 2023}, "required": false}, 
+              {"attributeName": "CROP_LIST", "seasonName": {"seasonType": "RABI", "year": 2023}, "required": false}, 
+              {"attributeName": "CROP_LIST", "seasonName": {"seasonType": "KHARIF", "year": 2022}, "required": false} ]' 
             items:
               type: object
               description: Object that defines each item in the list of sought crop registry attributes
               required:
                 - attributeName
                 - seasonName
-                - requiredOrNot
+                - required
               properties: 
                 attributeName: 
                   description: Name of the sought attribute
@@ -121,12 +128,9 @@ properties:
                 seasonName:
                   description: Name of the season for which the attribute's value is sought
                   $ref: '../objects/seasonName.yaml'
-                requiredOrNot:
+                required:
                   description: Flag indicating whether the attribute is required or not
-                  type: string
-                  enum:
-                    - REQUIRED
-                    - OPTIONAL
+                  type: boolean
               # type: array
               # items:
                   #              properties:

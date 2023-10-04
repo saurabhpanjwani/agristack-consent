@@ -13,6 +13,7 @@ get:
         signature:
           description: JWS signature on the response body generated using the server's private key (payload optional)
           $ref: '../components/headers/signature.yaml'
+          required: true
       content:
         application/json:
           schema:

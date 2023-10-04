@@ -15,15 +15,15 @@ get:
         example: 'consent-cm1-37934242348'
         maxLength: 99
       required: true
-    - name: transactionId
-      description: This must be set to be the transaction ID linked to the original consent request issued
-        by the AIU that calls the API
-      in: query
-      schema:
-        type: string
-        example: 'txn-37934242348'
-        maxLength: 99
-      required: true
+        #    - name: transactionId
+        #      description: This must be set to be the transaction ID linked to the original consent request issued
+        #        by the AIU that calls the API
+        #      in: query
+        #      schema:
+        #        type: string
+        #        example: 'txn-37934242348'
+        #        maxLength: 99
+        #      required: true
     - name: version
       description: Protocol specification version used
       in: header
