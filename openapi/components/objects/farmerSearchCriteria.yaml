@@ -1,0 +1,33 @@
+description: Object defining the criteria to search farmers by in AIP Datasets; the AIU seeks data of all farmers that satisfy these criteria
+type: object
+required:
+  - queryType
+  - query
+properties:
+  queryType:
+    description: Query type defining the search expression; only simple expressions involving equality checks concatenated using 
+      the AND operator are supported in this version (the schema for "query" is accordingly defined)
+    type: string
+    example: SIMPLE_EXPRESSION
+    enum: 
+      - SIMPLE_EXPRESSION
+      - ADVANCED_EXPRESSION
+  query:
+    description: Array of equality checks which are concatenated using the AND operator
+    type: array
+    items:
+      description: Object containing the operands of a single equality check
+      type: object
+      required:
+        - attribute
+        - value
+      properties: 
+        attribute:
+          description: Attribute for which the equality check is applied
+          type: string
+          example: CROP_CODE
+        value: 
+          description: Value against which the attribute is compared; if the attribute has this value, 
+            the equality check returns TRUE
+          type: string
+          example: 0100101

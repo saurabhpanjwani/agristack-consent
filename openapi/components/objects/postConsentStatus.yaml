@@ -1,0 +1,18 @@
+description: Consent status object used to communicate grant or denial of consent. 
+type: object
+required:
+  - farmerId
+  - status
+properties:
+  farmerId:
+    description: Farmer identifier of the farmer for whom consent grant or denial is being communicated
+    type: string
+    pattern: '^\d{11}$'
+    example: 12341234123
+  status:
+    description: Status of the consent artifact
+    type: string
+    example: 'GRANTED'
+    enum:
+      - GRANTED
+      - DENIED

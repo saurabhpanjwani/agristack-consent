@@ -40,9 +40,10 @@ properties:
             type: string
             example: 'err.farmerId.invalid'
             enum:
-              - 'err.farmerId.invalid'
-              - 'err.farmerId.expired'
+              - 'err.farmerIdSet.invalid'
+              - 'err.farmerSearchCriteria.invalid'
               - 'err.aipId.invalid'
+              - 'err.aiuId.invalid'
               - 'err.purposeCode.invalid'
               - 'err.consentUntil.invalid'
               - 'err.attributesSought.farmerRegAttributes.invalid'
@@ -52,4 +53,4 @@ properties:
           message:
             description: Verbose description of the error
             type: string
-            example: "Invalid Farmer ID: Farmer ID must be numeric"
+            example: "Invalid Farmer IDs: Some of the farmer IDs in the specified Farmer ID Set are invalid."

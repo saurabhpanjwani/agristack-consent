@@ -39,10 +39,6 @@ properties:
       artifact:
         description: Consent artifact against which data is being requested
         $ref: '../schemas/consentArtifact.yaml'
-      signature:
-        description: JWS signature on the consent artifact generated using the private key of the issuing consent manager (payload optional)
-        type: string
-        example: kjfd34mdf=KedfnfEpd2dmd+kDf..kfdl89rpK2Bsaf4ypS+ruE1o 
       attributesSought:
         description: Set of attributes that the client AIU intends to fetch in the current data request
         type: object

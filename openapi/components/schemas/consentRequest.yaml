@@ -34,18 +34,18 @@ properties:
     description: Main attributes of the API request
     type: object
     required: 
-      - farmerId
+      - targetUsers
       - aipId
       - aiuId
       - purposeCode
       - consentUntil
       - attributesSought
     properties:
-      farmerId:
-        description: Identifier of the farmer whose data is being sought
-        type: string
-        pattern: '^\d{11}$'
-        example: 12341234123
+      targetUsers:
+        description: Object defining the set of users whose data is being sought
+        oneOf: 
+          - $ref: '../objects/farmerIdSet.yaml'
+          - $ref: '../objects/farmerSearchCriteria.yaml'
       aipId:
         description: Identifier of the agricultural information provider (AIP) maintaining the data being sought
         type: string

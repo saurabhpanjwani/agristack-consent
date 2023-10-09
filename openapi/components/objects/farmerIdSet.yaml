@@ -1,0 +1,19 @@
+description: Object defining a set of farmer identifiers; the AIU seeks data of all farmers whose identifiers are in this set
+type: object
+required: 
+  - count
+  - farmerIds
+properties:
+  count:
+    description: The number of farmer identifiers in the set
+    type: integer
+    example: 1
+  farmerIds:
+    description: The list of farmer identifiers, specified as an array
+    type: array
+    example: '[12341234123, 98769876987]'
+    items:
+      description: A single farmer identifier
+      type: string
+      pattern: '^\d{11}$'
+      example: 12341234123

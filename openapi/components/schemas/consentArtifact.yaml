@@ -3,6 +3,7 @@ type: object
 required:
   - meta 
   - main
+  - signature
 properties:
   meta:
     description: Meta attributes of the consent artifact
@@ -113,8 +114,8 @@ properties:
       cmId:
         description: ID of the consent manager signing the artifact
         type: string
-        example: CM-45209311
+        example: 'CM-45209311'
       signature:
         description: JWS signature
         type: string
-        example: kjfd34mdf=KedfnfEpd2dmd+kDf..kfdl89rpK2Bsaf4ypS+ruE1o 
+        example: 'kjfd34mdf=KedfnfEpd2dmd+kDf..kfdl89rpK2Bsaf4ypS+ruE1o'

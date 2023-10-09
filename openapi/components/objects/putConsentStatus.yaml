@@ -1,0 +1,13 @@
+description: Consent status object used to communicate any form of status-change (e.g. revocation) of a consent artifact
+type: object
+required:
+  - status
+properties:
+  status:
+    description: Status of the consent artifact
+    type: string
+    example: 'REVOKED'
+    enum:
+      - REVOKED
+      - PAUSED
+      - RESUMED

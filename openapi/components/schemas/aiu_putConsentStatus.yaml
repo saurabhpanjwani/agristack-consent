@@ -22,4 +22,4 @@ properties:
         $ref: '../attributes/transactionId.yaml'
   main:
     description: Main attributes of the API request
-    $ref: '../objects/consentStatus.yaml'
+    $ref: '../objects/putConsentStatus.yaml'
