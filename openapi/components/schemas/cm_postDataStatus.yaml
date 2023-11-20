@@ -1,0 +1,25 @@
+type: object
+required:
+  - meta
+  - main
+properties:
+  meta:
+    description: Meta attributes of the API request
+    type: object
+    required:
+      - requestId
+      - timestamp
+      - transactionId
+    properties:
+      requestId:
+        description: Unique identifier of the API request, set by the API client
+        $ref: '../attributes/requestId.yaml'
+      timestamp:
+        description: Request timestamp, in ISO 8601 format
+        $ref: '../attributes/timestamp.yaml'
+      transactionId:
+        description: Transaction ID linked to the original data request 
+        $ref: '../attributes/transactionId.yaml'
+  main:
+    description: Main attributes of the API request
+    $ref: '../objects/dataStatus.yaml'

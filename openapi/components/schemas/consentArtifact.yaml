@@ -69,25 +69,61 @@ properties:
           farmerRegAttributes:
             description: List of farmer registry attributes that can be fetched
             type: array
-            example: '[NAME, DOB, FARMER_TYPE, FARM_COUNT, FARM_LIST]' 
+            example: '[{"systemName": "NAME", "displayName": "Farmer name"}, 
+                       {"systemName": "DOB", "displayName": "Date of birth"}, 
+                       {"systemName": "FARMER_TYPE", "displayName": "Type of farmer"}, 
+                       {"systemName": "FARM_COUNT", "displayName": "Number of farms"}, 
+                       {"systemName": "FARM_LIST", "displayName": "List of farms"}]'
             items:
-              type: string
-              enum:
-                - NAME
-                - GENDER
-                - DOB
-                - ADDRESS
-                - CASTE
-                - FARMER_TYPE # Cultivator or owner?
-                - FARM_COUNT
-                - FARM_LIST
+              description: Name of the attribute that is permitted to be fetched
+              type: object
+              required: 
+                - systemName
+                - displayName
+              properties:
+                systemName: 
+                  type: string
+                  enum:
+                    - NAME
+                    - GENDER
+                    - DOB
+                    - ADDRESS
+                    - CASTE
+                    - FARMER_TYPE # Cultivator or owner?
+                    - FARM_COUNT
+                    - FARM_LIST
+                displayName: 
+                  type: string
+                  example: "Farmer name"
+                auxiliaryData:
+                  description: Auxiliary data (relevant only for attributes that involve asset identifiers e.g., FARM_LIST)
+                  type: object
+                  required:
+                    - label
+                    - value
+                  properties:
+                    label:
+                      description: Label given to the auxiliary data by the CM
+                      type: string
+                      example: 'FARM_IDENTIFIERS_LIST'
+                      enum:
+                        - FARM_IDENTIFIERS_LIST
+                    value:
+                      description: Value of the auxiliary data e.g. Base64-encoded list of encrypted farm 
+                        identifiers, as provided to the CM by the relevant AIP 
+                      type: string
+                      example: 'AjyDii834pjkads_f023+TJf9ujk39fasaASFE39hafdee33'
           cropRegAttributes:
-            description: List of crop registry attributes that can be fetched
+            description: List of crop sown registry attributes that can be fetched
             type: array
-            example: '[ {"attributeName": "CROP_COUNT", "seasonName": {"seasonType": "KHARIF", "year": "2023"}}, 
-              {"attributeName": "CROP_COUNT", "seasonName": {"seasonType": "RABI", "year": "2023"}},
-              {"attributeName": "CROP_COUNT", "seasonName": {"seasonType": "KHARIF", "year": "2022"}},
-              {"attributeName": "CROP_LIST", "seasonName": {"seasonType": "KHARIF", "year": "2022"}} ]'
+            example: '[ {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
+                          "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName", "Kharif"}, "year": "2023"}},
+                        {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
+                          "seasonName": {"seasonType": {"systemName": "RABI", "displayName", "Rabi"}, "year": "2023"}},
+                        {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
+                          "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName", "Kharif"}, "year": "2022"}},
+                        {"attributeName": {"systemName": "CROP_LIST", "displayName": "List of crops"}, 
+                          "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName", "Kharif"}, "year": "2022"}} ]'
             items:
               type: object 
               description: Object that defines each item in the list of crop registry attributes permitted to be fetched
@@ -97,10 +133,19 @@ properties:
               properties:
                 attributeName:
                   description: Name of the attribute that is permitted to be fetched
-                  type: string
-                  enum: 
-                    - CROP_COUNT
-                    - CROP_LIST
+                  type: object
+                  required:
+                    - systemName
+                    - displayName
+                  properties:
+                    systemName:
+                      type: string
+                      enum: 
+                        - CROP_COUNT
+                        - CROP_LIST
+                    displayName:
+                      type: string
+                      example: "Number of crops"
                 seasonName:
                   description: Name of the season for which the attribute's value is sought
                   $ref: '../objects/seasonName.yaml'

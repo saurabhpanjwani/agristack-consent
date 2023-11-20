@@ -1,10 +1,10 @@
 post:
   tags:
-    - AIU
-  summary: Post data status
-  description: API used by an AIP to communicate successful or failed generation of a data bundle, in response 
-    to a previously-received data request 
-  operationId: postDataStatus
+    - CM
+  summary: Post data request acks
+  description: API used by an AIP to ack a previously-received data request (request for asset identifiers), 
+    based on semantic validation of the request (i.e., after ensuring soundness of the values specified in the request)
+  operationId: postDataRequestAcks
   security: 
     - api_key: [  ]
   parameters:
@@ -36,12 +36,21 @@ post:
     content:
       application/json: 
         schema:
-          $ref: '../components/schemas/aiu_postDataStatus.yaml'
-    description: Data status object
+          $ref: '../components/schemas/cm_dataRequestAck.yaml'
+    description: Data request Ack object
     required: true
   responses:
-    '200':
-      $ref: '../components/responses/response_default.yaml'
+    '200': 
+      $ref: '../components/responses/responseDataAck_default.yaml'
+        #    description: Default
+        #    headers:
+        #      signature: 
+        #        description: JWS signature on the response body generated using the server's private key (payload optional)
+        #        $ref: '../components/headers/signature.yaml'
+        #    content:
+        #      application/json:
+        #        schema:
+        #          $ref: '../components/schemas/consentRequestAck_default.yaml'
     '401':
       description: API key is missing or invalid
       headers:
@@ -49,6 +58,6 @@ post:
           schema: 
             type: string
     '403':
-      description: Client is forbidden 
+      description: Client is forbidden
     '404':
       description: Bad URL

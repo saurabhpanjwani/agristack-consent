@@ -1,0 +1,47 @@
+type: object
+required:
+  - meta
+  - main
+properties:
+  meta: 
+    description: Meta attributes of the API request
+    type: object
+    required:
+      - requestId
+      - timestamp
+      - transactionId
+    properties:
+      requestId:
+        description: Unique identifier of the API request, set by the API client
+        $ref: '../attributes/requestId.yaml'
+      timestamp:
+        description: Request timestamp, in ISO 8601 format
+        $ref: '../attributes/timestamp.yaml'
+      transactionId:
+        description: Transaction ID linked to the original data request
+        $ref: '../attributes/transactionId.yaml'
+  main:
+    description: Main attributes of the API request
+    type: object
+    required:
+      - result
+    properties: 
+      result:
+        description: Result created based on semantic validation of the original data request
+        $ref: '../attributes/result.yaml'
+      error:
+        description: Error code and message
+        type: object
+        required: 
+          - code
+        properties:
+          code:
+            description: Error code
+            type: string
+            example: 'err.assetIdentifierParams.invalid'
+            enum:
+              - 'err.assetIdentifierParams.invalid'
+          message:
+            description: Verbose description of the error
+            type: string
+            example: "The specification of the asset identifiers being requested is invalid"

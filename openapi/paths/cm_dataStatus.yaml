@@ -1,9 +1,9 @@
 post:
   tags:
-    - AIU
+    - CM
   summary: Post data status
-  description: API used by an AIP to communicate successful or failed generation of a data bundle, in response 
-    to a previously-received data request 
+  description: API used by an AIP to communicate successful or failed generation of a data bundle 
+    (containing information about asset identifiers), in response to a previously-received data request 
   operationId: postDataStatus
   security: 
     - api_key: [  ]
@@ -36,7 +36,7 @@ post:
     content:
       application/json: 
         schema:
-          $ref: '../components/schemas/aiu_postDataStatus.yaml'
+          $ref: '../components/schemas/cm_postDataStatus.yaml'
     description: Data status object
     required: true
   responses:

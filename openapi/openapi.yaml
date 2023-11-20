@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 0.9.1
+  version: 0.9.2
   title: AgriStack Consent Management (ACM) APIs
     # termsOfService: https://example.com/terms/
   contact:
@@ -48,10 +48,16 @@ servers:
 paths:
   /nm/serviceInfo:
     $ref: paths/nm_serviceInfo.yaml
+  /nm/schemas:
+    $ref: paths/nm_schemas.yaml
   /cm/consentRequests:
     $ref: paths/cm_consentRequests.yaml
   /cm/consentArtifacts/{artifactId}:
     $ref: paths/cm_consentArtifacts_{artifactId}.yaml
+  /cm/dataRequestAcks:
+    $ref: paths/cm_dataRequestAcks.yaml
+  /cm/dataStatus:
+    $ref: paths/cm_dataStatus.yaml
   /aiu/consentRequestAcks:
     $ref: paths/aiu_consentRequestAcks.yaml
   /aiu/consentStatus/{artifactId}:

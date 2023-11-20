@@ -32,13 +32,17 @@ properties:
     description: Main attributes of the API request
     type: object
     required:
-      - artifact
+      - consent
       - signature
       - attributesSought
     properties: 
-      artifact:
-        description: Consent artifact against which data is being requested
-        $ref: '../schemas/consentArtifact.yaml'
+      consent:
+        description: Object defining the consent against which data is being requested. If the data requester is an AIU, this is
+          a consent artifact obtained by that AIU from a CM. If the data requester is a CM that is requesting for asset identifiers,
+          this is an object containing parameters relevant only to such requests.
+        oneOf:
+          - $ref: '../schemas/consentArtifact.yaml'
+          - $ref: '../schemas/assetIdentifierParams.yaml'
       attributesSought:
         description: Set of attributes that the client AIU intends to fetch in the current data request
         type: object
@@ -79,4 +83,20 @@ properties:
                     - CROP_LIST
                 seasonName:
                   description: Name of the season for which the attribute's value is sought
-                  $ref: '../objects/seasonName.yaml'
+                  type: object
+                  required:
+                    - seasonType
+                    - year
+                  properties:
+                    seasonType:
+                      description: Type of the season 
+                      type: string
+                      enum: 
+                        - KHARIF
+                        - RABI
+                        - ZAID
+                    year:
+                      description: Year of consideration
+                      type: string
+                      format: year
+                      example: '2023'

@@ -1,0 +1,30 @@
+description: Object containing parameters relevant to a request for asset identifiers
+type: object
+required:
+  - farmerId
+  - aiuId
+  - purposeCode
+  - attributes
+properties:
+  farmerId:
+    description: Identifier of the farmer whose asset identifiers are intended to be shared
+    type: string
+    pattern: '^\d{11}$'
+    example: 12341234123
+  aiuId:
+    description: Identifier of the agricultural information user (AIU) intending to access the asset identifiers
+    type: string
+    example: 'AIU1'
+  purposeCode:
+    description: Purpose code indicating the intended purpose of fetching asset identifier data
+    type: string
+    example: 'CONSENT_FLOW'
+    enum:
+      - CONSENT_FLOW
+  attributes:
+    description: Set of data attributes that are being requested
+    type: string
+    example: 'FARM_IDENTIFIERS'
+    enum:
+      - FARM_IDENTIFIERS
+

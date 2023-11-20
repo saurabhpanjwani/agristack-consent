@@ -2,7 +2,7 @@ get:
   tags:
     - AIP
   summary: Get data
-  description: API used by an AIU to fetch data from an AIP, once the data is ready to be fetched
+  description: API used by an AIU (resp. CM) to fetch data (resp. asset identifiers) from an AIP
   operationId: getData
   security: 
     - api_key: [  ]
@@ -30,13 +30,6 @@ get:
       schema:
         type: string
         example: 'aiu1.com'
-    - name: artifactHash
-      description: SHA-256 hash of the consent artifact against which data is being fetched
-      in: header
-      required: true
-      schema:
-        type: string
-        example: 'knmdfak83o_erndsk3+eekj343'
     - name: signature
       description: JWS signature on the request (URL+header) generated using the client's private key (payload optional)
       in: header

@@ -5,12 +5,22 @@ required:
 properties: 
   seasonType:
     description: Type of the season 
-    type: string
-    enum: 
-      - KHARIF
-      - RABI
-      - ZAID
-    example: 'KHARIF'
+    type: object
+    required:
+      - systemName
+      - displayName
+    properties:
+      systemName: 
+        description: Attribute name, as specified in the back-end system
+        type: string
+        enum: 
+          - KHARIF
+          - RABI
+          - ZAID
+      displayName: 
+        description: Attribute name, as displayed in the user interface
+        type: string
+        example: 'Kharif'
   year:
     description: Year of consideration
     type: string

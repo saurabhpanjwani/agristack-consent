@@ -76,10 +76,14 @@ properties:
           farmerRegAttributes:
             description: List of farmer registry attributes that are being sought
             type: array
-            example: '[ {"attributeName": "NAME", "required": true}, {"attributeName": "GENDER", "required": false}, 
-              {"attributeName": "DOB", "required": true}, {"attributeName": "ADDRESS", "required": false}, 
-              {"attributeName": "CASTE", "required": false}, {"attributeName": "FARMER_TYPE", "required": true}, 
-              {"attributeName": "FARM_COUNT", "required": true}, {"attributeName": "FARM_LIST", "required": true} ]'
+            example: '[ {"attributeName": {"systemName": "NAME", "displayName": "Farmer Name"}, "required": true}, 
+                        {"attributeName": {"systemName": "GENDER", "displayName": "Gender"}, "required": false}, 
+                        {"attributeName": {"systemName": "DOB", "displayName": "Date of birth"}, "required": true}, 
+                        {"attributeName": {"systemName": "ADDRESS", "displayName": "Residential address"}, "required": false}, 
+                        {"attributeName": {"systemName": "CASTE", "displayName": "Caste"}, "required": false}, 
+                        {"attributeName": {"systemName": "FARMER_TYPE", "displayName": "Type of farmer"}, "required": true}, 
+                        {"attributeName": {"systemName": "FARM_COUNT", "displayName": "Number of farms"}, "required": true}, 
+                        {"attributeName": {"systemName": "FARM_LIST", "displayName": "List of farms"}, "required": true} ]'
             items:
               type: object
               description: Object that defines each item in the list of sought farmer registry attributes
@@ -89,28 +93,45 @@ properties:
               properties: 
                 attributeName: 
                   description: Name of the sought attribute
-                  type: string
-                  enum: 
-                    - NAME
-                    - GENDER
-                    - DOB
-                    - ADDRESS
-                    - CASTE
-                    - FARMER_TYPE # Cultivator or owner?
-                    - FARM_COUNT
-                    - FARM_LIST
+                  type: object
+                  required:
+                    - systemName
+                    - displayName
+                  properties: 
+                    systemName: 
+                      description: Attribute name, as specified in the back-end system
+                      type: string
+                      enum: 
+                        - NAME
+                        - GENDER
+                        - DOB
+                        - ADDRESS
+                        - CASTE
+                        - FARMER_TYPE # Cultivator or owner?
+                        - FARM_COUNT
+                        - FARM_LIST
+                    displayName:
+                      description: Attribute name, as displayed in the user interface
+                      type: string
+                      example: "Farmer Name"
                 required: 
                   description: Flag indicating whether the attribute is required or not
                   type: boolean
           cropRegAttributes:
             description: List of crop registry attributes that are being sought
             type: array
-            example: '[ {"attributeName": "CROP_COUNT", "seasonName": {"seasonType": "KHARIF", "year": 2023}, "required": false}, 
-              {"attributeName": "CROP_COUNT", "seasonName": {"seasonType": "RABI", "year": 2023}, "required": false}, 
-              {"attributeName": "CROP_COUNT", "seasonName": {"seasonType": "KHARIF", "year": 2022}, "required": false}, 
-              {"attributeName": "CROP_LIST", "seasonName": {"seasonType": "KHARIF", "year": 2023}, "required": false}, 
-              {"attributeName": "CROP_LIST", "seasonName": {"seasonType": "RABI", "year": 2023}, "required": false}, 
-              {"attributeName": "CROP_LIST", "seasonName": {"seasonType": "KHARIF", "year": 2022}, "required": false} ]' 
+            example: '[ {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
+                          "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName": "Kharif"}, "year": 2023}, "required": false}, 
+                {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
+                  "seasonName": {"seasonType": {"systemName": "RABI", "displayName": "Rabi"}, "year": 2023}, "required": false}, 
+                {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
+                  "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName": "Kharif"}, "year": 2022}, "required": false}, 
+                {"attributeName": {"systemName": "CROP_LIST", "displayName": "List of crops"}, 
+                  "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName": "Kharif"}, "year": 2023}, "required": false}, 
+                {"attributeName": {"systemName": "CROP_LIST", "displayName": "List of crops"}, 
+                  "seasonName": {"seasonType": {"systemName": "RABI", "displayName": "Rabi"}, "year": 2023}, "required": false}, 
+                {"attributeName": {"systemName": "CROP_LIST", "displayName": "List of crops"}, 
+                  "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName": "Kharif"}, "year": 2023}, "required": false} ]'
             items:
               type: object
               description: Object that defines each item in the list of sought crop registry attributes
@@ -121,10 +142,21 @@ properties:
               properties: 
                 attributeName: 
                   description: Name of the sought attribute
-                  type: string
-                  enum: 
-                    - CROP_COUNT
-                    - CROP_LIST
+                  type: object
+                  required:
+                    - systemName
+                    - displayName
+                  properties:
+                    systemName: 
+                      description: Attribute name, as specified in the back-end system
+                      type: string
+                      enum: 
+                        - CROP_COUNT
+                        - CROP_LIST
+                    displayName:
+                      description: Attribute name, as displayed in the user interface
+                      type: string
+                      example: "Number of crops"
                 seasonName:
                   description: Name of the season for which the attribute's value is sought
                   $ref: '../objects/seasonName.yaml'

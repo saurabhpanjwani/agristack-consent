@@ -1,0 +1,24 @@
+type: array
+description: List of schemas of different datasets maintained by the AIP whose ID is specified in the API request
+items: 
+  type: object
+  description: Object containing information about a single schema 
+  required:
+    - name
+    - description
+    - value
+  properties:
+    name:
+      type: string
+      description: Name of the schema
+      example: Farmer registry
+    description:
+      type: string
+      description: Free text description of the schema
+      example: "Schema of the farmer registry maintained by this AIP"
+    value:
+      type: string
+      description: Base64 encoding of a JSON representation of the schema
+      example: df394jk329ikfMddfas+T3GdQdjdekAPepd/End+wX29d300Bep/=
+  xml:
+      name: schemas

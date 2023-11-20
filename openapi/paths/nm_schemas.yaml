@@ -1,0 +1,38 @@
+get:
+  tags:
+    - NM
+  summary: Get schemas
+  description: Returns the latest schemas of the datasets controlled by a given AIP service
+  operationId: getSchemas
+  security:
+    - api_key: [ ]
+  parameters:
+    - name: entityId
+      description: ID of the entity
+      in: path
+      schema:
+        type: string
+        example: 'AIP1'
+      required: true
+  responses:
+    "200":
+      description: Default
+      headers:
+        signature:
+          description: JWS signature on the response body generated using the server's private key (payload optional)
+          $ref: '../components/headers/signature.yaml'
+          required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/getSchemas_success.yaml'
+    "401":
+      description: API key is missing or invalid
+      headers:
+        WWW_Authenticate:
+          schema:
+            type: string
+    '403':
+      description: Client is forbidden
+    '404':
+      description: Bad URL

@@ -5,7 +5,7 @@ required:
   - query
 properties:
   queryType:
-    description: Query type defining the search expression; only simple expressions involving equality checks concatenated using 
+    description: Query type defining the search expression; only simple expressions involving comparison checks concatenated using 
       the AND operator are supported in this version (the schema for "query" is accordingly defined)
     type: string
     example: SIMPLE_EXPRESSION
@@ -13,21 +13,33 @@ properties:
       - SIMPLE_EXPRESSION
       - ADVANCED_EXPRESSION
   query:
-    description: Array of equality checks which are concatenated using the AND operator
+    description: Array of comparison checks which are concatenated using the AND operator
     type: array
     items:
-      description: Object containing the operands of a single equality check
+      description: Object containing the operands of a single comparison check
       type: object
       required:
         - attribute
+        - operator
         - value
       properties: 
         attribute:
-          description: Attribute for which the equality check is applied
+          description: Attribute on which the comparison check is applied
           type: string
           example: CROP_CODE
+        operator:
+          description: Operator used in the comparison check
+          type: string
+          enum:
+            - GREATER_THAN
+            - GREATER_THAN_OR_EQUAL_TO
+            - EQUAL_TO
+            - NOT_EQUAL_TO
+            - LESS_THAN
+            - LESS_THAN_OR_EQUAL_TO
+          example: GREATER_THAN
         value: 
-          description: Value against which the attribute is compared; if the attribute has this value, 
-            the equality check returns TRUE
+          description: Value against which the attribute is compared. The result of the comparison check is the 
+            result of the operation **(attribute operator value)**
           type: string
           example: 0100101
