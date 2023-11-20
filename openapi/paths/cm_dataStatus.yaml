@@ -4,7 +4,7 @@ post:
   summary: Post data status
   description: API used by an AIP to communicate successful or failed generation of a data bundle 
     (containing information about asset identifiers), in response to a previously-received data request 
-  operationId: postDataStatus
+  operationId: postDataStatusCM
   security: 
     - api_key: [  ]
   parameters:

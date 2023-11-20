@@ -4,7 +4,7 @@ post:
   summary: Post data request acks
   description: API used by an AIP to ack a previously-received data request (request for asset identifiers), 
     based on semantic validation of the request (i.e., after ensuring soundness of the values specified in the request)
-  operationId: postDataRequestAcks
+  operationId: postDataRequestAcksCM
   security: 
     - api_key: [  ]
   parameters:
