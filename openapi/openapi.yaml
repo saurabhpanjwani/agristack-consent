@@ -48,7 +48,7 @@ servers:
 paths:
   /nm/serviceInfo:
     $ref: paths/nm_serviceInfo.yaml
-  /nm/schemas:
+  /nm/schemas/{entityId}:
     $ref: paths/nm_schemas_{entityId}.yaml
   /cm/consentRequests:
     $ref: paths/cm_consentRequests.yaml
