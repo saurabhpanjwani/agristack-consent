@@ -27,7 +27,8 @@ items:
           example: CM
           enum:
             - CM
-            - AIP
+            - AIP-STATE
+            - AIP-OTHER
             - AIU
         entityName: 
           type: string
@@ -37,11 +38,33 @@ items:
           type: string
           description: Entity ID
           example: CM-45209311
+        entityState:
+          type: string
+          description: State in which the AIP is situated; must be set if EntityType is AIP-STATE 
+          example: CM-45209311
     baseUrl:
       pattern: uri
       type: string
       description: Base URL used to access the service
-      example: https://cm1.com/v1/
+      example: https://aip1.org/
+    otherUrls:
+      description: Other URLs using which the service can be accessed. This is required only for **State-run AIP services** 
+        which offer a URL for SSO-based user authentication, a URL for user communication and a URL for fetching users'
+        Asset-identifier information 
+      type: object
+      properties: 
+        authUrl: 
+          type: string
+          description: URL for SSO-based user authentication
+          example: https://aip1.org/auth/
+        commUrl:
+          type: string
+          description: URL for user communication 
+          example: https://aip1.org/comm/
+        assetIdUrl:
+          type: string
+          description: URL for fetching users' Asset-identifier information
+          example: https://aip1.org/asset-identifiers/
     certificates:
       type: array
       description: List of certificates associated with the service owner
@@ -86,6 +109,10 @@ items:
             type: string
             description: Unique ID of the key
             example: ejRu9f3er12ower
+    apiKey:
+      type: string
+      description: API key needed to access the service (alpha-numeric string)
+      example: dfa34dsRQpuS9Ndoi3
     status:
       type: string
       description: Is the service live or defunct
