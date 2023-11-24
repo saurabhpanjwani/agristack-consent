@@ -3,7 +3,7 @@ type: object
 required:
   - meta 
   - main
-  - signature
+  - signatures
 properties:
   meta:
     description: Meta attributes of the consent artifact
@@ -149,18 +149,56 @@ properties:
                 seasonName:
                   description: Name of the season for which the attribute's value is sought
                   $ref: '../objects/seasonName.yaml'
-  signature:
-    description: Digital signature on the meta and main attributes of the artifact
+  signatures:
+    description: Digital signatures on the meta and main attributes of the artifact
     type: object
-    required:
-      - cmId
-      - signature
+    required: 
+      - cmSignature
     properties:
-      cmId:
-        description: ID of the consent manager signing the artifact
-        type: string
-        example: 'CM-45209311'
-      signature:
-        description: JWS signature
-        type: string
-        example: 'kjfd34mdf=KedfnfEpd2dmd+kDf..kfdl89rpK2Bsaf4ypS+ruE1o'
+      cmSignature:
+        type: object
+        description: Digital signature created by the CM on the meta and main attributes of the artifact
+        required:
+          - cmId
+          - signature
+        properties:
+          cmId:
+            description: ID of the consent manager signing the artifact
+            type: string
+            example: 'CM-45209311'
+          signature:
+            description: JWS signature
+            type: string
+            example: 'kjfd34mdf=KedfnfEpd2dmd+kDf..kfdl89rpK2Bsaf4ypS+ruE1o'
+      userSignature:
+        type: object
+        description: Digital signature created by an E-Sign Service Provider (ESP) on behalf of the user. 
+          The signature is created on the hash of the concatenation of the meta and main attributes of 
+          the consent artifact
+        required:
+          - espInfo
+          - certificate
+          - signature
+        properties:
+          espInfo:
+            description: Details of the ESP that creates the digital signature 
+            type: object
+            required:
+              - espName
+            properties:
+              espName:
+                description: Name of the ESP 
+                type: string
+                example: ESP1
+              espUrl:
+                description: URL of the ESP 
+                type: string
+                example: https://esp1.com/
+          certificate: 
+            description: Base64-encoded digital certificate of the user on whose behalf the signature is generated
+            type: string
+            example: 'jRjf93mfDfjoe894kff+4PJi00kjfddf9Riamdf=Kedf..nfEpd2dmd+kDf..dl8df4M39rpKdweijr2Bsaf4ypS+r++re84'
+          signature:
+            description: Base64-encoded signature
+            type: string
+            example: 'kjfd34mdf=KedfnfEpd2dmd+kDf..kfdl89rpK2Bsaf4ypS+ruE1o'

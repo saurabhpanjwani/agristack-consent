@@ -54,10 +54,10 @@ paths:
     $ref: paths/cm_consentRequests.yaml
   /cm/consentArtifacts/{artifactId}:
     $ref: paths/cm_consentArtifacts_{artifactId}.yaml
-  /cm/dataRequestAcks:
-    $ref: paths/cm_dataRequestAcks.yaml
-  /cm/dataStatus:
-    $ref: paths/cm_dataStatus.yaml
+      #/cm/dataRequestAcks:
+      # $ref: paths/cm_dataRequestAcks.yaml
+      # /cm/dataStatus:
+      # $ref: paths/cm_dataStatus.yaml
   /aiu/consentRequestAcks:
     $ref: paths/aiu_consentRequestAcks.yaml
   /aiu/consentStatus/{artifactId}:
