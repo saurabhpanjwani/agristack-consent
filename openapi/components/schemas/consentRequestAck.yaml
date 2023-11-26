@@ -46,8 +46,8 @@ properties:
               - 'err.aiuId.invalid'
               - 'err.purposeCode.invalid'
               - 'err.consentUntil.invalid'
-              - 'err.attributesSought.farmerRegAttributes.invalid'
-              - 'err.attributesSought.cropRegAttributes.invalid'
+              - 'err.attributesSought.profileAttributes.invalid'
+              - 'err.attributesSought.assetAttributes.invalid'
               - 'err.timeout.invalid'
               - 'err.callbackUrl.invalid'
           message:

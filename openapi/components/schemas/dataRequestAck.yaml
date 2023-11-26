@@ -44,8 +44,8 @@ properties:
               - 'err.artifact.timestamp.stale'
               - 'err.artifact.validUntil.past'
               - 'err.signature.invalid'
-              - 'err.attributesSought.farmerRegAttributes.outOfBounds'
-              - 'err.attributesSought.cropRegAttributes.outOfBounds'
+              - 'err.attributesSought.profileAttributes.outOfBounds'
+              - 'err.attributesSought.assetAttributes.outOfBounds'
               - 'err.timeout.invalid'
               - 'err.callbackUrl.invalid'
           message:
