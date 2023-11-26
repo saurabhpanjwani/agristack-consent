@@ -66,14 +66,11 @@ properties:
         description: Set of data attributes that can be fetched against the artifact
         type: object
         properties:
-          farmerRegAttributes:
-            description: List of farmer registry attributes that can be fetched
+          profileAttributes:
+            description: List of profile data attributes that can be fetched
             type: array
             example: '[{"systemName": "NAME", "displayName": "Farmer name"}, 
-                       {"systemName": "DOB", "displayName": "Date of birth"}, 
-                       {"systemName": "FARMER_TYPE", "displayName": "Type of farmer"}, 
-                       {"systemName": "FARM_COUNT", "displayName": "Number of farms"}, 
-                       {"systemName": "FARM_LIST", "displayName": "List of farms"}]'
+                       {"systemName": "DOB", "displayName": "Date of birth"} ]'
             items:
               description: Name of the attribute that is permitted to be fetched
               type: object
@@ -89,14 +86,44 @@ properties:
                     - DOB
                     - ADDRESS
                     - CASTE
-                    - FARMER_TYPE # Cultivator or owner?
-                    - FARM_COUNT
-                    - FARM_LIST
                 displayName: 
                   type: string
                   example: "Farmer name"
+          assetAttributes:
+            description: List of asset data attributes that can be fetched
+            type: array
+            example: '[ {"attributeName": {"systemName": "FARM_DATA", "displayName": "Farm ownership data"}, 
+                         "auxiliaryData": {"label": "FARM_IDENTIFIERS_LIST", "value": "AjyDii834pjkads_f023+TJf9ujk39fasaASFE39hafdee33"  }} ]'
+              #  {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
+              #            "seasonName": {"seasonType": {"systemName": "RABI", "displayName", "Rabi"}, "year": "2023"}},
+              #          {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
+              #            "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName", "Kharif"}, "year": "2022"}},
+              #          {"attributeName": {"systemName": "CROP_LIST", "displayName": "List of crops"}, 
+              #            "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName", "Kharif"}, "year": "2022"}} ]'
+            items:
+              type: object 
+              description: Object that defines each item in the list of asset data attributes permitted to be fetched
+              required:
+                - attributeName
+                - auxiliaryData
+              properties:
+                attributeName:
+                  description: Name of the attribute that is permitted to be fetched
+                  type: object
+                  required:
+                    - systemName
+                    - displayName
+                  properties:
+                    systemName:
+                      type: string
+                      enum: 
+                        - FARM_DATA
+                        - CROP_DATA
+                    displayName:
+                      type: string
+                      example: "Farm ownership data"
                 auxiliaryData:
-                  description: Auxiliary data (relevant only for attributes that involve asset identifiers e.g., FARM_LIST)
+                  description: Auxiliary data e.g., encrypted list of asset identifiers
                   type: object
                   required:
                     - label
@@ -113,42 +140,9 @@ properties:
                         identifiers, as provided to the CM by the relevant AIP 
                       type: string
                       example: 'AjyDii834pjkads_f023+TJf9ujk39fasaASFE39hafdee33'
-          cropRegAttributes:
-            description: List of crop sown registry attributes that can be fetched
-            type: array
-            example: '[ {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
-                          "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName", "Kharif"}, "year": "2023"}},
-                        {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
-                          "seasonName": {"seasonType": {"systemName": "RABI", "displayName", "Rabi"}, "year": "2023"}},
-                        {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
-                          "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName", "Kharif"}, "year": "2022"}},
-                        {"attributeName": {"systemName": "CROP_LIST", "displayName": "List of crops"}, 
-                          "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName", "Kharif"}, "year": "2022"}} ]'
-            items:
-              type: object 
-              description: Object that defines each item in the list of crop registry attributes permitted to be fetched
-              required:
-                - attributeName
-                - seasonName
-              properties:
-                attributeName:
-                  description: Name of the attribute that is permitted to be fetched
-                  type: object
-                  required:
-                    - systemName
-                    - displayName
-                  properties:
-                    systemName:
-                      type: string
-                      enum: 
-                        - CROP_COUNT
-                        - CROP_LIST
-                    displayName:
-                      type: string
-                      example: "Number of crops"
-                seasonName:
-                  description: Name of the season for which the attribute's value is sought
-                  $ref: '../objects/seasonName.yaml'
+                        # seasonName:
+                        #   description: Name of the season for which the attribute's value is sought
+                        #   $ref: '../objects/seasonName.yaml'
   signatures:
     description: Digital signatures on the meta and main attributes of the artifact
     type: object

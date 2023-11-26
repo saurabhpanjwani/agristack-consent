@@ -2,44 +2,125 @@ description: Object defining the criteria to search farmers by in AIP Datasets; 
 type: object
 required:
   - queryType
-  - query
+  - expression
 properties:
   queryType:
-    description: Query type defining the search expression; only simple expressions involving comparison checks concatenated using 
-      the AND operator are supported in this version (the schema for "query" is accordingly defined)
+    description: Query type defining the search expression; only simple expressions involving two comparison checks 
+      concatenated using a single logical operator (AND, OR or NOT) are supported in this version. 
+      (the schema for "query" is accordingly defined)
     type: string
-    example: SIMPLE_EXPRESSION
+    example: PREDICATE_QUERY
     enum: 
-      - SIMPLE_EXPRESSION
-      - ADVANCED_EXPRESSION
-  query:
-    description: Array of comparison checks which are concatenated using the AND operator
-    type: array
-    items:
-      description: Object containing the operands of a single comparison check
-      type: object
-      required:
-        - attribute
-        - operator
-        - value
-      properties: 
-        attribute:
-          description: Attribute on which the comparison check is applied
-          type: string
-          example: CROP_CODE
-        operator:
-          description: Operator used in the comparison check
-          type: string
-          enum:
-            - GREATER_THAN
-            - GREATER_THAN_OR_EQUAL_TO
-            - EQUAL_TO
-            - NOT_EQUAL_TO
-            - LESS_THAN
-            - LESS_THAN_OR_EQUAL_TO
-          example: GREATER_THAN
-        value: 
-          description: Value against which the attribute is compared. The result of the comparison check is the 
-            result of the operation **(attribute operator value)**
-          type: string
-          example: 0100101
+      - PREDICATE_QUERY
+  expression:
+    description: Expression with a condition
+    type: object
+    properties:
+      expression1:
+        type: object
+        description: Expression 1
+        properties:
+          seq_num:
+            description: Expression sequence number for correlation of attributes falling under one condition
+            type: number
+            example: 1
+          attribute_name:
+            description: Attribute name
+            type: string
+            example: 'crop_area'
+          operator:
+            description: Operator in an expression
+            type: string
+            enum:
+              - gt
+              - lt
+              - eq
+              - ge
+              - le
+            example: lt
+          attribute_value:
+            description: Value against which the attribute is to be compared
+            oneOf:
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+            example: "200.12"
+        required:
+          - seq_num
+          - attribute_name
+          - operator
+          - attribute_value
+      condition:
+        description: Condition in an expression
+        type: string
+        enum:
+          - AND
+          - OR
+          - NOT
+        example: AND
+      expression2:
+        type: object
+        description: Expression 2
+        properties:
+          seq_num:
+            description: Expression sequence number for correlation of attributes falling under one condition
+            type: number
+            example: 1
+          attribute_name:
+            type: string
+            description: Attribute name
+            example: 'state_lgd_code'
+          operator:
+            type: string
+            description: Operator in an expression
+            enum:
+              - gt
+              - lt
+              - eq
+              - ge
+              - le
+            example: 'eq'
+          attribute_value:
+            description: Value against which the attribute is to be compared
+            oneOf:
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+            example: "28"
+        required:
+          - seq_num
+          - attribute_name
+          - operator
+          - attribute_value
+    required:
+      - expression1
+
+            #    description: Object containing the operands of a single comparison check
+            #    type: object
+            #    required:
+            #      - attribute
+            #      - operator
+            #      - value
+            #    properties: 
+            #      attribute:
+            #        description: Attribute on which the comparison check is applied
+            #        type: string
+            #        example: CROP_CODE
+            #      operator:
+            #        description: Operator used in the comparison check
+            #        type: string
+            #        enum:
+            #          - GREATER_THAN
+            #          - GREATER_THAN_OR_EQUAL_TO
+            #          - EQUAL_TO
+            #          - NOT_EQUAL_TO
+            #          - LESS_THAN
+            #          - LESS_THAN_OR_EQUAL_TO
+            #        example: GREATER_THAN
+            #      value: 
+            #        description: Value against which the attribute is compared. The result of the comparison check is the 
+            #          result of the operation **(attribute operator value)**
+            #        type: string
+            #        example: 0100101

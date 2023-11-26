@@ -47,10 +47,10 @@ properties:
         description: Set of attributes that the client AIU intends to fetch in the current data request
         type: object
         properties: 
-          farmerRegAttributes: 
-            description: List of farmer registry attributes whose value the client AIU intends to fetch
+          profileAttributes: 
+            description: List of profile data attributes whose value the client AIU intends to fetch
             type: array
-            example: '[NAME, DOB, FARMER_TYPE, FARM_LIST]'
+            example: '[NAME, DOB]'
             items: 
               description: Name of the attribute under consideration
               type: string
@@ -60,43 +60,43 @@ properties:
                 - DOB
                 - ADDRESS
                 - CASTE
-                - FARMER_TYPE # Cultivator or owner?
-                - FARM_COUNT
-                - FARM_LIST
-          cropRegAttributes: 
-            description: List of crop registry attributes whose data the client AIU intends to fetch
+                  # - FARMER_TYPE # Cultivator or owner?
+                  # - FARM_COUNT
+                  # - FARM_LIST
+          assetAttributes: 
+            description: List of asset data attributes whose data the client AIU intends to fetch
             type: array
-            example: '[ {CROP_COUNT, {KHARIF, 2022}}, {CROP_COUNT, {RABI, 2023}}, {CROP_LIST, {KHARIF, 2023}} ]'
+            example: '[FARM_DATA, CROP_DATA]'
             items:
-              type: object
-              description: Object that defines each item in the list of crop registry attributes whose data values 
-                the client AIU intendes to fetch
-              required:
-                - attributeName
-                - seasonName
-              properties:
-                attributeName: 
-                  description: Name of the attribute under consideration
-                  type: string
-                  enum: 
-                    - CROP_COUNT
-                    - CROP_LIST
-                seasonName:
-                  description: Name of the season for which the attribute's value is sought
-                  type: object
-                  required:
-                    - seasonType
-                    - year
-                  properties:
-                    seasonType:
-                      description: Type of the season 
-                      type: string
-                      enum: 
-                        - KHARIF
-                        - RABI
-                        - ZAID
-                    year:
-                      description: Year of consideration
-                      type: string
-                      format: year
-                      example: '2023'
+              # type: object
+              description: Name of the attribute under consideration
+                # Object that defines each item in the list of asset data attributes whose values the client AIU intendes to fetch
+                # required:
+                # - attributeName
+                  # - seasonName
+                  # properties:
+                  # attributeName: 
+                  # description: Name of the attribute under consideration
+              type: string
+              enum: 
+                - FARM_DATA
+                - CROP_DATA
+                      # seasonName:
+                      #   description: Name of the season for which the attribute's value is sought
+                      #   type: object
+                      #   required:
+                      #     - seasonType
+                      #     - year
+                      #   properties:
+                      #     seasonType:
+                      #       description: Type of the season 
+                      #       type: string
+                      #       enum: 
+                      #         - KHARIF
+                      #         - RABI
+                      #         - ZAID
+                      #     year:
+                      #       description: Year of consideration
+                      #       type: string
+                      #       format: year
+                      #       example: '2023'

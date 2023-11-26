@@ -73,20 +73,17 @@ properties:
         description: Set of attributes being sought
         type: object
         properties:
-          farmerRegAttributes:
-            description: List of farmer registry attributes that are being sought
+          profileAttributes:
+            description: List of profile data attributes that are being sought
             type: array
             example: '[ {"attributeName": {"systemName": "NAME", "displayName": "Farmer Name"}, "required": true}, 
                         {"attributeName": {"systemName": "GENDER", "displayName": "Gender"}, "required": false}, 
                         {"attributeName": {"systemName": "DOB", "displayName": "Date of birth"}, "required": true}, 
                         {"attributeName": {"systemName": "ADDRESS", "displayName": "Residential address"}, "required": false}, 
-                        {"attributeName": {"systemName": "CASTE", "displayName": "Caste"}, "required": false}, 
-                        {"attributeName": {"systemName": "FARMER_TYPE", "displayName": "Type of farmer"}, "required": true}, 
-                        {"attributeName": {"systemName": "FARM_COUNT", "displayName": "Number of farms"}, "required": true}, 
-                        {"attributeName": {"systemName": "FARM_LIST", "displayName": "List of farms"}, "required": true} ]'
+                        {"attributeName": {"systemName": "CASTE", "displayName": "Caste"}, "required": false} ]'
             items:
               type: object
-              description: Object that defines each item in the list of sought farmer registry attributes
+              description: Object that defines each item in the list of sought profile data attributes
               required:
                 - attributeName
                 - required
@@ -107,9 +104,6 @@ properties:
                         - DOB
                         - ADDRESS
                         - CASTE
-                        - FARMER_TYPE # Cultivator or owner?
-                        - FARM_COUNT
-                        - FARM_LIST
                     displayName:
                       description: Attribute name, as displayed in the user interface
                       type: string
@@ -117,27 +111,24 @@ properties:
                 required: 
                   description: Flag indicating whether the attribute is required or not
                   type: boolean
-          cropRegAttributes:
-            description: List of crop registry attributes that are being sought
+          assetAttributes:
+            description: List of asset data attributes that are being sought
             type: array
-            example: '[ {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
-                          "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName": "Kharif"}, "year": 2023}, "required": false}, 
-                {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
-                  "seasonName": {"seasonType": {"systemName": "RABI", "displayName": "Rabi"}, "year": 2023}, "required": false}, 
-                {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
-                  "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName": "Kharif"}, "year": 2022}, "required": false}, 
-                {"attributeName": {"systemName": "CROP_LIST", "displayName": "List of crops"}, 
-                  "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName": "Kharif"}, "year": 2023}, "required": false}, 
-                {"attributeName": {"systemName": "CROP_LIST", "displayName": "List of crops"}, 
-                  "seasonName": {"seasonType": {"systemName": "RABI", "displayName": "Rabi"}, "year": 2023}, "required": false}, 
-                {"attributeName": {"systemName": "CROP_LIST", "displayName": "List of crops"}, 
-                  "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName": "Kharif"}, "year": 2023}, "required": false} ]'
+            example: '[ {"attributeName": {"systemName": "FARM_DATA", "displayName": "Farm ownership data"}, "required": true}, 
+                {"attributeName": {"systemName": "CROP_DATA", "displayName": "Crop sown data"}, "required": false} ]'
+                  #  {"attributeName": {"systemName": "CROP_COUNT", "displayName": "Number of crops"}, 
+                  #    "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName": "Kharif"}, "year": 2022}, "required": false}, 
+                  #  {"attributeName": {"systemName": "CROP_LIST", "displayName": "List of crops"}, 
+                  #    "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName": "Kharif"}, "year": 2023}, "required": false}, 
+                  #  {"attributeName": {"systemName": "CROP_LIST", "displayName": "List of crops"}, 
+                  #    "seasonName": {"seasonType": {"systemName": "RABI", "displayName": "Rabi"}, "year": 2023}, "required": false}, 
+                  #  {"attributeName": {"systemName": "CROP_LIST", "displayName": "List of crops"}, 
+                  #    "seasonName": {"seasonType": {"systemName": "KHARIF", "displayName": "Kharif"}, "year": 2023}, "required": false} 
             items:
               type: object
-              description: Object that defines each item in the list of sought crop registry attributes
+              description: Object that defines each item in the list of sought asset data attributes
               required:
                 - attributeName
-                - seasonName
                 - required
               properties: 
                 attributeName: 
@@ -151,15 +142,15 @@ properties:
                       description: Attribute name, as specified in the back-end system
                       type: string
                       enum: 
-                        - CROP_COUNT
-                        - CROP_LIST
+                        - FARM_DATA
+                        - CROP_DATA
                     displayName:
                       description: Attribute name, as displayed in the user interface
                       type: string
-                      example: "Number of crops"
-                seasonName:
-                  description: Name of the season for which the attribute's value is sought
-                  $ref: '../objects/seasonName.yaml'
+                      example: "Farm ownership data of the user"
+                        #  seasonName:
+                        #    description: Name of the season for which the attribute's value is sought
+                        #    $ref: '../objects/seasonName.yaml'
                 required:
                   description: Flag indicating whether the attribute is required or not
                   type: boolean
